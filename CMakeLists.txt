@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(2024_I2P2_TowerDefense_with_answer)
+project(Beat_Game)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -92,7 +92,11 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Scene/StartScene.h
         Scene/SettingsScene.cpp
         Scene/SettingsScene.hpp
-#        UI/Component/TextInput.cpp
+        Scene/ScoreBoardScene.cpp
+        Scene/ScoreBoardScene.hpp
+        Engine/FileIO.cpp
+        Engine/FileIO.hpp
+        #        UI/Component/TextInput.cpp
 #        UI/Component/TextInput.hpp
 )
 
