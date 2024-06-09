@@ -11,6 +11,8 @@ file(COPY Resource/images DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY Resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY allegro_monolith-5.2.dll DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
+find_package(Python REQUIRED)
+
 add_executable(2024_I2P2_TowerDefense_with_answer
         Engine/Allegro5Exception.cpp
         Engine/Allegro5Exception.hpp
@@ -56,6 +58,8 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         UI/Component/Label.cpp
         UI/Component/InputBox.cpp
         UI/Component/Slider.cpp
+        Database/Server.cpp
+        Database/Server.hpp
 
         #        UI/Component/TextInput.cpp
 #        UI/Component/TextInput.hpp
