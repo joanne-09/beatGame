@@ -6,7 +6,7 @@
 #define BEAT_GAME_MUSICSELECTION_HPP
 
 
-class MusicSelection final : Engine::IScene{
+class MusicSelection final : public Engine::IScene{
 public:
     MusicSelection() = default;
     void Initialize() override;

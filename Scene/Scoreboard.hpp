@@ -6,7 +6,7 @@
 #define BEAT_GAME_SCOREBOARD_HPP
 
 
-class Scoreboard final : Engine::IScene{
+class Scoreboard final : public Engine::IScene{
 public:
     Scoreboard() = default;
     void Initialize() override;

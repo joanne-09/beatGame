@@ -6,7 +6,7 @@
 #define BEAT_GAME_SETTINGS_HPP
 
 
-class Settings final : Engine::IScene{
+class Settings final : public Engine::IScene{
 public:
     Settings() = default;
     void Initialize() override;
