@@ -21,6 +21,6 @@ int main(int argc, char **argv) {
     //game.AddNewScene("score", new Scoreboard());
     game.AddNewScene("settings", new Settings());
 
-	game.Start("start", 60, 1600, 832);
+	game.Start("start", 60, 1920, 1080);
 	return 0;
 }
