@@ -6,7 +6,7 @@
 #define BEAT_GAME_PLAYSCENE_HPP
 
 
-class PlayScene final : Engine::IScene{
+class PlayScene final : public Engine::IScene{
 public:
     PlayScene() = default;
     void Initialize() override;

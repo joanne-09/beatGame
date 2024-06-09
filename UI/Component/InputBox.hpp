@@ -20,7 +20,7 @@ namespace Engine {
         std::string name;
         Engine::Label *namelabel;
         float x1, y1, x2, y2;
-        int maxsize = 9, transparent, count;
+        int maxsize = 11, transparent, count;
         bool allowInput;
     protected:
         ;
@@ -36,7 +36,7 @@ namespace Engine {
         /// <param name="h">Height of the image, 0 indicates original size.</param>
         /// <param name="anchorX">The centerX of the object. (0, 0) means top-left, while (1, 0) means top-right.</param>
         /// <param name="anchorY">The centerY of the object. (0, 1) means bottom-left, while (1, 1) means bottom-right.</param>
-        explicit InputBox(float x, float y, float w = 0, float h = 0, float anchorX = 0, float anchorY = 0);
+        explicit InputBox(float x, float y, float w = 500, float h = 80, float anchorX = 0.5, float anchorY = 0.5);
 
         /// <summary>
         /// draw initial rectangle box for input
@@ -50,6 +50,11 @@ namespace Engine {
         // used for writing file to get private member
         std::string getName(){
             return name;
+        }
+        // used for setting name
+        void setName(std::string Name){
+            this->name = Name;
+            namelabel->Text = Name;
         }
     };
 }
