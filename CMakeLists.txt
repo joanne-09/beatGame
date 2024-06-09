@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 project(Beat_Game)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
 
@@ -10,6 +10,11 @@ file(COPY Resource/fonts DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY Resource/images DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY Resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY allegro_monolith-5.2.dll DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY upload.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file (COPY Database DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file (COPY Scripts DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+find_package(Python REQUIRED)
 
 add_executable(2024_I2P2_TowerDefense_with_answer
         Engine/Allegro5Exception.cpp
@@ -56,6 +61,8 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         UI/Component/Label.cpp
         UI/Component/InputBox.cpp
         UI/Component/Slider.cpp
+        Database/Server.cpp
+        Database/Server.hpp
 
         #        UI/Component/TextInput.cpp
 #        UI/Component/TextInput.hpp
