@@ -8,9 +8,9 @@
 
 bool Server::Upload() {
 #ifdef __APPLE__
-    system("./Scripts/upload");
+    system("./Scripts/mac_upload");
 #elif defined _WIN32
-    system("dist\\windows_upload.exe");
+    system(".\\Scripts\\windows_upload.exe");
 #else
     throw std::exception("Unsupported Operating System");
 #endif
