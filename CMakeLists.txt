@@ -4,12 +4,12 @@ project(Beat_Game)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
-include_directories(Resource)
+include_directories(Reference/Resource)
 
-file(COPY Resource/audios DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY Resource/fonts DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY Resource/images DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-file(COPY Resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY Reference/Resource/audios DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY Reference/Resource/fonts DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY Reference/Resource/images DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY Reference/Resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY allegro_monolith-5.2.dll DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(2024_I2P2_TowerDefense_with_answer
@@ -17,85 +17,87 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Engine/Allegro5Exception.hpp
         Engine/AudioHelper.cpp
         Engine/AudioHelper.hpp
-        Bullet/Bullet.cpp
-        Bullet/Bullet.hpp
+        Reference/Bullet/Bullet.cpp
+        Reference/Bullet/Bullet.hpp
         Engine/Collider.cpp
         Engine/Collider.hpp
-        UI/Animation/DirtyEffect.cpp
-        UI/Animation/DirtyEffect.hpp
-        Enemy/Enemy.cpp
-        Enemy/Enemy.hpp
-        UI/Animation/ExplosionEffect.cpp
-        UI/Animation/ExplosionEffect.hpp
-        Bullet/FireBullet.cpp
-        Bullet/FireBullet.hpp
+        Reference/UI/Animation/DirtyEffect.cpp
+        Reference/UI/Animation/DirtyEffect.hpp
+        Reference/Enemy/Enemy.cpp
+        Reference/Enemy/Enemy.hpp
+        Reference/UI/Animation/ExplosionEffect.cpp
+        Reference/UI/Animation/ExplosionEffect.hpp
+        Reference/Bullet/FireBullet.cpp
+        Reference/Bullet/FireBullet.hpp
         Engine/GameEngine.cpp
         Engine/GameEngine.hpp
         Engine/Group.cpp
         Engine/Group.hpp
         Engine/IControl.cpp
         Engine/IControl.hpp
-        UI/Component/Image.cpp
-        UI/Component/Image.hpp
-        UI/Component/ImageButton.cpp
-        UI/Component/ImageButton.hpp
+        Reference/UI/Component/Image.cpp
+        Reference/UI/Component/Image.hpp
+        Reference/UI/Component/ImageButton.cpp
+        Reference/UI/Component/ImageButton.hpp
         Engine/IObject.cpp
         Engine/IObject.hpp
         Engine/IScene.cpp
         Engine/IScene.hpp
-        UI/Component/Label.cpp
-        UI/Component/Label.hpp
-        Bullet/LaserBullet.cpp
-        Bullet/LaserBullet.hpp
-        Turret/LaserTurret.cpp
-        Turret/LaserTurret.hpp
+        Reference/UI/Component/Label.cpp
+        Reference/UI/Component/Label.hpp
+        Reference/Bullet/LaserBullet.cpp
+        Reference/Bullet/LaserBullet.hpp
+        Reference/Turret/LaserTurret.cpp
+        Reference/Turret/LaserTurret.hpp
         Engine/LOG.cpp
         Engine/LOG.hpp
-        Scene/LoseScene.cpp
-        Scene/LoseScene.hpp
-        Turret/MachineGunTurret.cpp
-        Turret/MachineGunTurret.hpp
+        Reference/Scene/LoseScene.cpp
+        Reference/Scene/LoseScene.hpp
+        Reference/Turret/MachineGunTurret.cpp
+        Reference/Turret/MachineGunTurret.hpp
         main.cpp
-        Bullet/MissileBullet.cpp
-        Bullet/MissileBullet.hpp
-        Turret/MissileTurret.cpp
-        Turret/MissileTurret.hpp
-        UI/Animation/Plane.cpp
-        UI/Animation/Plane.hpp
-        Enemy/PlaneEnemy.cpp
-        Enemy/PlaneEnemy.hpp
-        Scene/PlayScene.cpp
-        Scene/PlayScene.hpp
+        Reference/Bullet/MissileBullet.cpp
+        Reference/Bullet/MissileBullet.hpp
+        Reference/Turret/MissileTurret.cpp
+        Reference/Turret/MissileTurret.hpp
+        Reference/UI/Animation/Plane.cpp
+        Reference/UI/Animation/Plane.hpp
+        Reference/Enemy/PlaneEnemy.cpp
+        Reference/Enemy/PlaneEnemy.hpp
+        Reference/Scene/PlayScene.cpp
+        Reference/Scene/PlayScene.hpp
         Engine/Point.cpp
         Engine/Point.hpp
         Engine/Resources.cpp
         Engine/Resources.hpp
-        UI/Component/Slider.cpp
-        UI/Component/Slider.hpp
-        Enemy/SoldierEnemy.cpp
-        Enemy/SoldierEnemy.hpp
+        Reference/UI/Component/Slider.cpp
+        Reference/UI/Component/Slider.hpp
+        Reference/Enemy/SoldierEnemy.cpp
+        Reference/Enemy/SoldierEnemy.hpp
         Engine/Sprite.cpp
         Engine/Sprite.hpp
-        Scene/StageSelectScene.cpp
-        Scene/StageSelectScene.hpp
-        Enemy/TankEnemy.cpp
-        Enemy/TankEnemy.hpp
-        Turret/Turret.cpp
-        Turret/Turret.hpp
-        Turret/TurretButton.cpp
-        Turret/TurretButton.hpp
-        Scene/WinScene.cpp
-        Scene/WinScene.hpp
+        Reference/Scene/StageSelectScene.cpp
+        Reference/Scene/StageSelectScene.hpp
+        Reference/Enemy/TankEnemy.cpp
+        Reference/Enemy/TankEnemy.hpp
+        Reference/Turret/Turret.cpp
+        Reference/Turret/Turret.hpp
+        Reference/Turret/TurretButton.cpp
+        Reference/Turret/TurretButton.hpp
+        Reference/Scene/WinScene.cpp
+        Reference/Scene/WinScene.hpp
 
         # TODO: [HACKATHON-1-SCENE] (2/4) Add the new scene source files here
-        Scene/StartScene.cpp
-        Scene/StartScene.h
-        Scene/SettingsScene.cpp
-        Scene/SettingsScene.hpp
-        Scene/ScoreBoardScene.cpp
-        Scene/ScoreBoardScene.hpp
+        Reference/Scene/StartScene.cpp
+        Reference/Scene/StartScene.h
+        Reference/Scene/SettingsScene.cpp
+        Reference/Scene/SettingsScene.hpp
+        Reference/Scene/ScoreBoardScene.cpp
+        Reference/Scene/ScoreBoardScene.hpp
         Engine/FileIO.cpp
         Engine/FileIO.hpp
+        Reference/UI/Component/InputBox.cpp
+        Reference/UI/Component/InputBox.hpp
         #        UI/Component/TextInput.cpp
 #        UI/Component/TextInput.hpp
 )
