@@ -51,6 +51,10 @@ namespace Engine {
         std::string getName(){
             return name;
         }
+        // used for setting name
+        void setName(std::string Name){
+            this->name = Name;
+        }
     };
 }
 

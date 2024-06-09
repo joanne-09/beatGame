@@ -18,22 +18,20 @@ void MainMenu::Initialize() {
     int halfH = h / 2;
     Engine::ImageButton *btn;
 
-    AddNewObject(
-            new Engine::Label("Beat Game", "pirulen.ttf", 120, halfW, halfH / 3 + 50, 10, 255, 255, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Beat Game", "pirulen.ttf", 120, halfW, halfH / 3 + 50, 10, 255, 255, 255, 0.5, 0.5));
 
-    btn = new Engine::ImageButton("stage-select/dirt.png", "stage-select/floor.png", halfW - 200, halfH / 2 + 200, 400,
-                                  100);
+    btn = new Engine::ImageButton("stage-select/dirt.png", "stage-select/floor.png", halfW - 200, halfH / 2 + 200, 400, 100);
     btn->SetOnClickCallback(std::bind(&MainMenu::StartOnClick, this));
     AddNewControlObject(btn);
     AddNewObject(new Engine::Label("Start", "pirulen.ttf", 48, halfW, halfH / 2 + 250, 0, 0, 0, 255, 0.5, 0.5));
 
-    btn = new Engine::ImageButton("stage-select/dirt.png", "stage-select/floor.png", halfW - 200, halfH * 5 / 2 - 300,
-                                  400, 100);
+    btn = new Engine::ImageButton("stage-select/dirt.png", "stage-select/floor.png", halfW - 200, halfH * 5 / 2 - 300, 400, 100);
     btn->SetOnClickCallback(std::bind(&MainMenu::SettingsOnClick, this));
     AddNewControlObject(btn);
     AddNewObject(new Engine::Label("Settings", "pirulen.ttf", 48, halfW, halfH * 5 / 2 - 250, 0, 0, 0, 255, 0.5, 0.5));
 
     inputBox = new Engine::InputBox(halfW, halfH * 5 / 2 - 100, 500, 80);
+    inputBox->setName(name);
     AddNewControlObject(inputBox);
 }
 
@@ -43,12 +41,15 @@ void MainMenu::Terminate() {
 
 void MainMenu::Update(float deltaTime) {
     IScene::Update(deltaTime);
+    inputBox->Update(deltaTime);
 }
 
 void MainMenu::StartOnClick() {
+    name = inputBox->getName() == "" ? "Player" : inputBox->getName();
     Engine::GameEngine::GetInstance().ChangeScene("select");
 }
 
 void MainMenu::SettingsOnClick() {
+    name = inputBox->getName();
     Engine::GameEngine::GetInstance().ChangeScene("settings");
 }
