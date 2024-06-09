@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 project(Beat_Game)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
 
@@ -10,6 +10,8 @@ file(COPY Resource/fonts DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY Resource/images DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY Resource DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY allegro_monolith-5.2.dll DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY test.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file (COPY Database/upload_file.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 find_package(Python REQUIRED)
 

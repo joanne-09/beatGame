@@ -8,12 +8,13 @@
 #include "Scene/PlayScene.hpp"
 #include "Scene/Scoreboard.hpp"
 #include "Scene/Settings.hpp"
-
+#include<bits/stdc++.h>
+#include<cstdlib>
 
 int main(int argc, char **argv) {
 	Engine::LOG::SetConfig(true);
-	Engine::GameEngine& game = Engine::GameEngine::GetInstance();
-
+	//Engine::GameEngine& game = Engine::GameEngine::GetInstance();
+    system("python3 test.py");
     // TODO: [HACKATHON-1-SCENE] (3/4): Register Scenes here
     /*game.AddNewScene("start", new StartScene());
 	game.AddNewScene("settings", new SettingsScene());
@@ -26,6 +27,6 @@ int main(int argc, char **argv) {
 
     // TODO: [HACKATHON-1-SCENE] (4/4): Change the start scene
 //	game.Start("stage-select", 60, 1600, 832);
-	game.Start("start", 60, 1600, 832);
+	//game.Start("start", 60, 1600, 832);
 	return 0;
 }
