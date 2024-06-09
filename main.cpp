@@ -10,11 +10,11 @@
 #include "Scene/Settings.hpp"
 #include<bits/stdc++.h>
 #include<cstdlib>
-
+#include<Database/Server.hpp>
 int main(int argc, char **argv) {
 	Engine::LOG::SetConfig(true);
 	//Engine::GameEngine& game = Engine::GameEngine::GetInstance();
-    system("python3 test.py");
+    Server::Upload();
     // TODO: [HACKATHON-1-SCENE] (3/4): Register Scenes here
     /*game.AddNewScene("start", new StartScene());
 	game.AddNewScene("settings", new SettingsScene());

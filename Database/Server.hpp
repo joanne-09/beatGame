@@ -5,10 +5,10 @@
 #ifndef BEAT_GAME_SERVER_HPP
 #define BEAT_GAME_SERVER_HPP
 #include<bits/stdc++.h>
-
+#include<cstdlib>
 class Server {
 public:
-
+    static bool Upload();
 };
 
 
