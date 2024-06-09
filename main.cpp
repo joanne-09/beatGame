@@ -16,9 +16,9 @@ int main(int argc, char **argv) {
 
     // TODO: [HACKATHON-1-SCENE] (3/4): Register Scenes here
     game.AddNewScene("start", new MainMenu());
-    game.AddNewScene("play", new PlayScene());
-    game.AddNewScene("select", new MusicSelection());
-    game.AddNewScene("score", new Scoreboard());
+    //game.AddNewScene("play", new PlayScene());
+    //game.AddNewScene("select", new MusicSelection());
+    //game.AddNewScene("score", new Scoreboard());
     game.AddNewScene("settings", new Settings());
 
 	game.Start("start", 60, 1600, 832);

@@ -3,7 +3,7 @@
 
 namespace Engine {
     InputBox::InputBox(float x, float y, float w, float h, float anchorX, float anchorY) : IObject(x, y, w, h, anchorX,anchorY) {
-        x1 = x, y1 = y, x2 = x + w, y2 = y + h;
+        x1 = x - w/2, y1 = y, x2 = x + w/2, y2 = y + h;
         name = "";
         count = 0, transparent = 255;
         allowInput = false;
