@@ -2,8 +2,8 @@
 // Created by Lee Eason on 2024/6/10.
 //
 
-#ifndef BEAT_GAME_JOANNE_HPP
-#define BEAT_GAME_JOANNE_HPP
+#ifndef BEAT_GAME_HEADERS_HPP
+#define BEAT_GAME_HEADERS_HPP
 
 #include"Engine/Allegro5Exception.hpp"
 #include"Engine/AudioHelper.hpp"
@@ -22,4 +22,4 @@
 #include "Engine/Resources.hpp"
 #include "Engine/Sprite.hpp"
 
-#endif //BEAT_GAME_JOANNE_HPP
+#endif //BEAT_GAME_HEADERS_HPP
