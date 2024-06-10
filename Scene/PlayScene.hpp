@@ -10,13 +10,15 @@
 
 class PlayScene final : public Engine::IScene{
 private:
-    float Speed, delay;
+    float Speed, delay, ticks;
     int width, height;
     int bpm;
     int score;
 public:
     std::list<std::string> beatmapData;
+    std::vector<int> keyMapping;
 
+    Engine::Group* BeatGroup;
     Engine::Label* UIScore;
 
     explicit PlayScene() = default;
@@ -30,6 +32,7 @@ public:
     void OnKeyDown(int keyCode) override;
     void ReadMapWave();
     void DrawUIScore() const;
+    void SetUpBeat(float deltaTime);
 };
 
 

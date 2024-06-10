@@ -1,10 +1,8 @@
 #include <allegro5/allegro.h>
-#include <allegro5/bitmap.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/color.h>
 #include <algorithm>
 #include <cmath>
-#include <fstream>
 #include <functional>
 #include <vector>
 #include <queue>
@@ -20,24 +18,30 @@
 #include "Engine/FileIO.hpp"
 #include "Engine/Point.hpp"
 #include "UI/Component/Label.hpp"
+#include "UI/Component/ImageButton.hpp"
+#include "UI/Component/Beat.hpp"
 #include "PlayScene.hpp"
 
 void PlayScene::Initialize() {
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
 
-    ReadMapWave();
     // UI score setup
     score = 0;
     UIScore = new Engine::Label(" ", "orbitron/medium.ttf", 48, width - 380, 50, 64, 64, 64, 255, 0, 0.5);
+
+    ReadMapWave();
+    // set up lasting time of each beat
+    ticks = 60 / bpm;
 }
 
 void PlayScene::Terminate() {
-    ;
+    IScene::Terminate();
 }
 
 void PlayScene::Update(float deltaTime) {
-    ;
+    IScene::Update(deltaTime);
+    SetUpBeat(deltaTime);
 }
 
 void PlayScene::Draw() const {
@@ -73,4 +77,15 @@ void PlayScene::DrawUIScore() const {
     scoreText << std::setfill('0') << std::setw(9) << score;
     UIScore->Text = scoreText.str();
     UIScore->Draw();
+}
+
+void PlayScene::SetUpBeat(float deltaTime) {
+    ticks -= deltaTime;
+    if(ticks > 0) return;
+
+    // reset ticks
+    ticks = 60 / bpm;
+
+    auto cur = beatmapData.front();
+    beatmapData.pop_front();
 }
