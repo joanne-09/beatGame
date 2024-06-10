@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
+#include <list>
 #include <unordered_map>
 #include <utility>
 
@@ -19,6 +21,7 @@ public:
     void write(const std::vector<std::string>& input);
     void sort(int mode = 1);
     std::vector<std::pair<int, std::pair<std::string, std::string>>> read();
+    std::list<std::string> readBeatmap();
 };
 
 #endif //INC_2024_I2P2_TOWERDEFENSE_WITH_ANSWER_FILEIO_HPP

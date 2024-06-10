@@ -47,3 +47,15 @@ std::vector<std::pair<int, std::pair<std::string, std::string>>> FileIO::read() 
 
     return ret;
 }
+
+std::list<std::string> FileIO::readBeatmap() {
+    std::list<std::string> ret;
+    file.open(filename, std::ios::in);
+    std::string beats;
+    while(!file.eof() && file >> beats){
+        ret.push_back(beats);
+    }
+    file.close();
+
+    return ret;
+}

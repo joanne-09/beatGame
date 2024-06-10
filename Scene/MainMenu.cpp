@@ -18,18 +18,19 @@ void MainMenu::Initialize() {
     int halfW = w / 2;
     int halfH = h / 2;
     Engine::ImageButton *btn;
-    const std::string font = "orbitron/medium.ttf";
-    AddNewObject(new Engine::Label("Beat Game", font, 120, halfW, halfH / 3 + 50, 10, 255, 255, 255, 0.5, 0.5));
 
-    btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 600, halfH / 2 + 300, 400, 100);
+    const std::string font = "orbitron/medium.ttf";
+    AddNewObject(new Engine::Label("Beat Game", font, 120, halfW, halfH / 5 + 50, 10, 255, 255, 255, 0.5, 0.5));
+
+    btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 800, halfH + 250, 400, 100);
     btn->SetOnClickCallback(std::bind(&MainMenu::StartOnClick, this));
     AddNewControlObject(btn);
-    AddNewObject(new Engine::Label("Start", font, 48, halfW - 400, halfH / 2 + 350, 255, 255, 255, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Start", font, 48, halfW - 600, halfH + 300, 255, 255, 255, 255, 0.5, 0.5));
 
-    btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW + 200, halfH / 2 + 300, 400, 100);
+    btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW + 400, halfH + 250, 400, 100);
     btn->SetOnClickCallback(std::bind(&MainMenu::SettingsOnClick, this));
     AddNewControlObject(btn);
-    AddNewObject(new Engine::Label("Settings", font, 48, halfW + 400, halfH / 2 + 350, 255, 255, 255, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Settings", font, 48, halfW + 600, halfH + 300, 255, 255, 255, 255, 0.5, 0.5));
 
     inputBox = new Engine::InputBox(halfW, halfH / 3 + 200);
     inputBox->setName(name);
