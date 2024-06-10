@@ -4,7 +4,7 @@
 
 #ifndef BEAT_GAME_MUSICBLOCK_HPP
 #define BEAT_GAME_MUSICBLOCK_HPP
-#include "Engine/joanne.hpp"
+#include "Engine/Headers.hpp"
 #include<bits/stdc++.h>
 
 class MusicBlock : public Engine::Sprite{
