@@ -16,10 +16,10 @@ void Settings::Initialize() {
     int halfH = h / 2;
 
     Engine::ImageButton *btn;
-    btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 200, halfH / 2 + 400, 400, 100);
+    btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 200, halfH + 250, 400, 100);
     btn->SetOnClickCallback(std::bind(&Settings::BackOnClick, this));
     AddNewControlObject(btn);
-    AddNewObject(new Engine::Label("Back", "pirulen.ttf", 48, halfW, halfH / 2 + 450, 255, 255, 255, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Back", "pirulen.ttf", 48, halfW, halfH + 300, 255, 255, 255, 255, 0.5, 0.5));
 
     Slider *sliderBGM, *sliderSFX;
     sliderBGM = new Slider(40 + halfW - 95, halfH - 50 - 2, 190, 4);
