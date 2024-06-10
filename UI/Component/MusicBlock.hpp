@@ -4,10 +4,12 @@
 
 #ifndef BEAT_GAME_MUSICBLOCK_HPP
 #define BEAT_GAME_MUSICBLOCK_HPP
+#include "Engine/joanne.hpp"
+#include<bits/stdc++.h>
 
-
-class MusicBlock : public {
-
+class MusicBlock : public Engine::Sprite{
+public:
+    MusicBlock(std::string baseimg, std::string profileimg, int x, int y);
 };
 
 

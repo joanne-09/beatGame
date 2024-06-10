@@ -36,6 +36,10 @@ void MainMenu::Initialize() {
     inputBox->setName(name);
     inputBox->Draw();
     AddNewControlObject(inputBox);
+
+    btn = new Engine::ImageButton("donate.png", "donate.png", halfW + 600, halfH + 400, 300, 100);
+    btn->SetOnClickCallback([this] { DonateOnClick(); });
+    AddNewControlObject(btn);
 }
 
 void MainMenu::Terminate() {
@@ -55,4 +59,13 @@ void MainMenu::StartOnClick() {
 void MainMenu::SettingsOnClick() {
     name = inputBox->getName();
     Engine::GameEngine::GetInstance().ChangeScene("settings");
+}
+
+void MainMenu::DonateOnClick() {
+    const std::string link = "https://www.paypal.com/ncp/payment/M7RX89GE9Y9ZJ";
+#ifdef __APPLE__
+    system(("open " + link).c_str());
+#elif defined _WIN32
+    system(("start " + link).c_str());
+#endif
 }

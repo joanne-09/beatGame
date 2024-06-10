@@ -58,5 +58,5 @@ void Settings::SFXSlideOnValueChanged(float value) {
 }
 
 void Settings::BackOnClick() {
-    Engine::GameEngine::GetInstance().ChangeScene("start");
+    Engine::GameEngine::GetInstance().ChangeScene("main-menu");
 }
