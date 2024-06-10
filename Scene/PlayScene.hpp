@@ -11,10 +11,13 @@
 class PlayScene final : public Engine::IScene{
 private:
     float Speed, delay;
+    int width, height;
     int bpm;
     int score;
 public:
     std::list<std::string> beatmapData;
+
+    Engine::Label* UIScore;
 
     explicit PlayScene() = default;
     void Initialize() override;
@@ -26,6 +29,7 @@ public:
     void OnMouseUp(int button, int mx, int my) override;
     void OnKeyDown(int keyCode) override;
     void ReadMapWave();
+    void DrawUIScore() const;
 };
 
 
