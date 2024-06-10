@@ -19,6 +19,7 @@ public:
     void Update(float deltaTime) override;
     void StartOnClick();
     void SettingsOnClick();
+    void DonateOnClick();
     //void ExitOnClick();
 };
 
