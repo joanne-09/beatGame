@@ -3,6 +3,7 @@
 //
 
 #include "MusicSelection.hpp"
+#include "UI/Component/MusicBlock.hpp"
 
 void MusicSelection::Initialize() {
 int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
@@ -11,7 +12,7 @@ int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
     int halfH = h / 2;
     Engine::ImageButton *btn;
     const std::string font = "orbitron/medium.ttf";
-    AddNewObject(new Engine::Label("Music Selection", font, 120, halfW, halfH / 3 + 50, 10, 255, 255, 255, 0.5, 0.5));
+    //AddNewObject(new Engine::Label("Music Selection", font, 120, halfW, halfH / 3 + 50, 10, 255, 255, 255, 0.5, 0.5));
 
     btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 900, halfH / 2 + 700, 250, 75);
     btn->SetOnClickCallback(std::bind(&MusicSelection::BackOnClick, this));
