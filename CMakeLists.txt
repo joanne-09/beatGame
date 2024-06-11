@@ -66,6 +66,8 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         UI/Component/MusicBlock.cpp
         UI/Component/MusicBlock.hpp
         Engine/Headers.hpp
+        Lanes/Lane.cpp
+        Lanes/Lane.hpp
 
         #        UI/Component/TextInput.cpp
 #        UI/Component/TextInput.hpp

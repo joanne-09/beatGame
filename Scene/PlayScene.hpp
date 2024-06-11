@@ -5,19 +5,23 @@
 #include <memory>
 #include <utility>
 #include <vector>
-#include "Engine/IScene.hpp"
-#include "Engine/Point.hpp"
-
+#include <unordered_map>
+#include "Engine/Headers.hpp"
+#include "UI/Component/Image.hpp"
+#include "UI/Component/Label.hpp"
+//#include "Beats/Beat.hpp" // This is a circular dependency
+#include "Lanes/Lane.hpp"
+class Lane;
 class PlayScene final : public Engine::IScene{
 private:
     float Speed, delay, ticks;
-    int width, height;
-    int bpm;
-    int score;
+    int width, height, laneCount;
+    int bpm, score;
 public:
     std::list<std::string> beatmapData;
-    std::vector<int> keyMapping;
+    std::unordered_map<int, int> keyMapping;
 
+    std::vector<Lane*> lanes;
     Engine::Group* BeatGroup;
     Engine::Label* UIScore;
 
@@ -33,6 +37,7 @@ public:
     void ReadMapWave();
     void DrawUIScore() const;
     void SetUpBeat(float deltaTime);
+    void LaneEffect(int keyCode);
 };
 
 
