@@ -9,9 +9,10 @@
 #include "Beat.hpp"
 
 
-Beat::Beat(std::string img, float x, float y, float w, float h, float fall, int lane) : Engine::Sprite(img, x, y, w, h, 0.5, 0.5) {
-    fallSecond = fall;
+Beat::Beat(std::string img, float x, float y, float speed, float fall, int lane, float w, float h) : Engine::Sprite(img, x, y, w, h, 0, 0) {
+    Velocity = Engine::Point(0, 1) * speed;
     this->lane = lane;
+    this->fallSecond = fall;
 }
 
 PlayScene* Beat::getPlayScene() {
@@ -21,8 +22,21 @@ PlayScene* Beat::getPlayScene() {
 void Beat::Update(float deltaTime) {
     Sprite::Update(deltaTime);
     PlayScene* scene = getPlayScene();
+
     // update falling time
     this->fallSecond -= deltaTime;
+
+    // check if the beat is hit
+    for(auto& it : scene->LaneGroup->GetObjects()) {
+        Lane* lane = dynamic_cast<Lane*>(it);
+        if (lane->laneID != this->lane) continue;
+
+        if(this->fallSecond <= 0) {
+            scene->BeatGroup->RemoveObject(objectIterator);
+        }else {
+            ;
+        }
+    }
 
     // check if the beat is out of boundary
     int w = Engine::GameEngine::GetInstance().GetScreenSize().x;

@@ -34,15 +34,17 @@ void PlayScene::Initialize() {
 
     ReadMapWave();
     // set up lasting time of each beat
-    bpm = 10; // bm was 0
+    bpm = 120; // bm was 0
     ticks = 60 / bpm;
 
     // set up lanes
     laneCount = 4;
-    lanes.clear();
+    AddNewObject(LaneGroup = new Engine::Group());
     for(int i=1; i<=laneCount; i++) {
-        lanes.push_back(new Lane(i, "ui/lane.png", width/2 - 750 + i*250, 0));
+        LaneGroup->AddNewObject(new Lane(i, "ui/lane.png", width/2 - 750 + i*250, 0));
     }
+
+    AddNewObject(BeatGroup = new Engine::Group());
 }
 
 void PlayScene::Terminate() {
@@ -51,16 +53,15 @@ void PlayScene::Terminate() {
 
 void PlayScene::Update(float deltaTime) {
     IScene::Update(deltaTime);
-    //SetUpBeat(deltaTime);
+
+    // add beat to scene
+    SetUpBeat(deltaTime);
+    UpdateBeat(deltaTime);
 }
 
 void PlayScene::Draw() const {
     IScene::Draw();
     DrawUIScore();
-
-    for(int i=0; i<laneCount; i++) {
-        lanes[i]->Draw();
-    }
 }
 
 void PlayScene::OnMouseDown(int button, int mx, int my) {
@@ -104,17 +105,32 @@ void PlayScene::DrawUIScore() const {
 void PlayScene::SetUpBeat(float deltaTime) {
     ticks -= deltaTime;
     if(ticks > 0) return;
+    if(beatmapData.empty()) return;
 
     // reset ticks
     ticks = 60 / bpm;
 
     auto cur = beatmapData.front();
     beatmapData.pop_front();
+
+    for(int i=0; i<laneCount; i++) {
+        if(cur[i] == '1') {
+            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, bpm, 1040/bpm, i+1);
+            BeatGroup->AddNewObject(beat);
+        }
+    }
+}
+
+void PlayScene::UpdateBeat(float deltaTime) {
+    for(auto& beat : BeatGroup->GetObjects()) {
+        beat->Update(deltaTime);
+    }
 }
 
 void PlayScene::LaneEffect(int keyCode, bool type) {
     if(keyMapping.find(keyCode) == keyMapping.end()) return;
 
     int id = keyMapping[keyCode];
-    lanes[id-1]->clicked = type;
+    auto temp = (Lane*)*next(LaneGroup->GetObjects().begin(), id-1);
+    temp->clicked = type;
 }

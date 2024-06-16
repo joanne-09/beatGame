@@ -9,7 +9,7 @@
 #include "Engine/Headers.hpp"
 #include "UI/Component/Image.hpp"
 #include "UI/Component/Label.hpp"
-//#include "Beats/Beat.hpp" // This is a circular dependency
+#include "UI/Component/ImageButton.hpp"
 #include "Lanes/Lane.hpp"
 class Lane;
 class PlayScene final : public Engine::IScene{
@@ -21,9 +21,10 @@ public:
     std::list<std::string> beatmapData;
     std::unordered_map<int, int> keyMapping;
 
-    std::vector<Lane*> lanes;
     Engine::Group* BeatGroup;
+    Engine::Group* LaneGroup;
     Engine::Label* UIScore;
+    Engine::ImageButton* Pause;
 
     explicit PlayScene() = default;
     void Initialize() override;
@@ -38,6 +39,7 @@ public:
     void ReadMapWave();
     void DrawUIScore() const;
     void SetUpBeat(float deltaTime);
+    void UpdateBeat(float deltaTime);
     void LaneEffect(int keyCode, bool type);
 };
 
