@@ -51,7 +51,7 @@ void PlayScene::Terminate() {
 
 void PlayScene::Update(float deltaTime) {
     IScene::Update(deltaTime);
-    SetUpBeat(deltaTime);
+    //SetUpBeat(deltaTime);
 }
 
 void PlayScene::Draw() const {
@@ -77,6 +77,14 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 
 void PlayScene::OnKeyDown(int keyCode) {
     IScene::OnKeyDown(keyCode);
+
+    LaneEffect(keyCode, true);
+}
+
+void PlayScene::OnKeyUp(int keyCode) {
+    IScene::OnKeyUp(keyCode);
+
+    LaneEffect(keyCode, false);
 }
 
 void PlayScene::ReadMapWave() {
@@ -104,7 +112,9 @@ void PlayScene::SetUpBeat(float deltaTime) {
     beatmapData.pop_front();
 }
 
-void PlayScene::LaneEffect(int keyCode) {
+void PlayScene::LaneEffect(int keyCode, bool type) {
     if(keyMapping.find(keyCode) == keyMapping.end()) return;
 
+    int id = keyMapping[keyCode];
+    lanes[id-1]->clicked = type;
 }

@@ -34,10 +34,11 @@ public:
     void OnMouseMove(int mx, int my) override;
     void OnMouseUp(int button, int mx, int my) override;
     void OnKeyDown(int keyCode) override;
+    void OnKeyUp(int keyCode) override;
     void ReadMapWave();
     void DrawUIScore() const;
     void SetUpBeat(float deltaTime);
-    void LaneEffect(int keyCode);
+    void LaneEffect(int keyCode, bool type);
 };
 
 
