@@ -14,9 +14,9 @@
 class Lane;
 class PlayScene final : public Engine::IScene{
 private:
-    float Speed, delay, ticks;
+    float Speed, delay, ticks, bpm;
     int width, height, laneCount;
-    int bpm, score;
+    int score;
 public:
     std::list<std::string> beatmapData;
     std::unordered_map<int, int> keyMapping;
