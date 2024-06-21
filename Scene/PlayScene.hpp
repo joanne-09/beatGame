@@ -19,7 +19,7 @@ private:
     int score;
 public:
     std::list<std::string> beatmapData;
-    std::unordered_map<int, int> keyMapping;
+    static std::unordered_map<int, int> keyMapping;
 
     Engine::Group* BeatGroup;
     Engine::Group* LaneGroup;

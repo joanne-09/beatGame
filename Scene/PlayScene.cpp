@@ -21,6 +21,7 @@
 #include "UI/Component/ImageButton.hpp"
 #include "PlayScene.hpp"
 
+std::unordered_map<int, int> PlayScene::keyMapping;
 void PlayScene::Initialize() {
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -29,13 +30,10 @@ void PlayScene::Initialize() {
     score = 0;
     UIScore = new Engine::Label(" ", "orbitron/medium.ttf", 48, width - 380, 50, 64, 64, 64, 255, 0, 0.5);
 
-    // set up key mapping
-    keyMapping = {{ALLEGRO_KEY_D, 1}, {ALLEGRO_KEY_F, 2}, {ALLEGRO_KEY_J, 3}, {ALLEGRO_KEY_K, 4}};
-
     ReadMapWave();
     // set up lasting time of each beat
     bpm = 120; // bpm was 0
-    ticks = 60.0 / bpm;
+    ticks = 3;
 
     // set up lanes
     laneCount = 4;
@@ -108,14 +106,14 @@ void PlayScene::SetUpBeat(float deltaTime) {
     if(beatmapData.empty()) return;
 
     // reset ticks
-    ticks = 60 / bpm;
+    ticks = 60.0 / bpm;
 
     auto cur = beatmapData.front();
     beatmapData.pop_front();
 
     for(int i=0; i<laneCount; i++) {
         if(cur[i] == '1') {
-            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, 150 / 60 *bpm, 1040/bpm, i+1);
+            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, 135 / 60 *bpm, 1040/bpm, i+1);
             BeatGroup->AddNewObject(beat);
         }
     }
