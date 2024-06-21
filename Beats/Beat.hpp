@@ -14,7 +14,7 @@ private:
 protected:
     PlayScene* getPlayScene();
 public:
-    Beat(std::string img, float x, float y, float speed, float fall, int lane ,float w = 230, float h = 125);
+    Beat(std::string img, float x, float y, float speed, int lane ,float w = 230, float h = 125);
     void Update(float deltaTime) override;
 };
 

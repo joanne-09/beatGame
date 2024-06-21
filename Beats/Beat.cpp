@@ -9,10 +9,10 @@
 #include "Beat.hpp"
 
 
-Beat::Beat(std::string img, float x, float y, float speed, float fall, int lane, float w, float h) : Engine::Sprite(img, x, y, w, h, 0, 0) {
+Beat::Beat(std::string img, float x, float y, float speed, int lane, float w, float h) : Engine::Sprite(img, x, y, w, h, 0, 0) {
     Velocity = Engine::Point(0, 1) * speed;
     this->lane = lane;
-    this->fallSecond = fall;
+    this->fallSecond = 1040 / speed;
 }
 
 PlayScene* Beat::getPlayScene() {

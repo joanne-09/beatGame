@@ -113,7 +113,7 @@ void PlayScene::SetUpBeat(float deltaTime) {
 
     for(int i=0; i<laneCount; i++) {
         if(cur[i] == '1') {
-            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, 135 / 60 *bpm, 1040/bpm, i+1);
+            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, 125.0 * bpm / 60.0, i+1);
             BeatGroup->AddNewObject(beat);
         }
     }
