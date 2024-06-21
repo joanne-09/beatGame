@@ -29,6 +29,8 @@ public:
     void Update(float deltaTime) override;
     void BackOnClick();
     void SettingsOnClick();
+    void Draw() const override;
+    void ShowPreview();
 };
 
 

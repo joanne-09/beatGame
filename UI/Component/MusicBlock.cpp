@@ -4,6 +4,10 @@
 
 #include"MusicBlock.hpp"
 
-MusicBlock::MusicBlock(std::string baseimg, std::string profileimg, float x, float y, float width, float height): Engine::Sprite(baseimg, x, y, width, height, 0, 0){
+void MusicBlock::DrawRange(int start, int end) {
+    int i = start;
+    for(auto it = blocks.begin(); it != blocks.end() && i < end; ++it, ++i){
+
+    }
 
 }

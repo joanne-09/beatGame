@@ -5,13 +5,16 @@
 #ifndef BEAT_GAME_MUSICBLOCK_HPP
 #define BEAT_GAME_MUSICBLOCK_HPP
 #include "Engine/Headers.hpp"
+#include "ImageButton.hpp"
 #include<bits/stdc++.h>
 
 class PlayScene;
-class MusicBlock : public Engine::Sprite{
+class MusicBlock{
+    friend class MusicSelection;
+private:
+    std::list<Engine::ImageButton*> blocks;
 public:
-    MusicBlock(std::string baseimg, std::string profileimg, float x, float y, float width, float height);
+    void DrawRange(int start, int end);
 };
-
 
 #endif //BEAT_GAME_MUSICBLOCK_HPP

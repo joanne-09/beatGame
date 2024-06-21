@@ -6,10 +6,16 @@
 #include "UI/Component/MusicBlock.hpp"
 
 void MusicSelection::Initialize() {
-int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
+    int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
     int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
     int halfW = w / 2;
     int halfH = h / 2;
+    //Engine::Image background("background.png", 0, 0, 0, 0, 0, 0);
+    auto *background = new Engine::Image("dark_blue.png", 0, 0, 0, 0, 0, 0);
+    Engine::IScene::Draw();
+    background->Draw();
+    AddNewObject(background);
+
     Engine::ImageButton *btn;
     const std::string font = "orbitron/medium.ttf";
     //AddNewObject(new Engine::Label("Music Selection", font, 120, halfW, halfH / 3 + 50, 10, 255, 255, 255, 0.5, 0.5));
@@ -26,25 +32,60 @@ int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
 
 
     AddNewObject(MusicGroup = new Engine::Group());
-    for(int i = 0; i < 4; ++i){
-        MusicGroup->AddNewObject(new MusicBlock("ui/musicblock.png", "ui/musicblock.png", halfW - 500, halfH - 300 + i * 200, 400, 150));
+
+    //std::list<Engine::ImageButton*> music_blocks;
+    //MusicBlock musicblock;
+    /*for(int i = 0; i < 20; ++i){
+        //MusicGroup->AddNewObject(new MusicBlock("music_block.png", "music_block.png", halfW - 800, halfH - 300 + i * 125, 600, 125));
+        btn = new Engine::ImageButton("music_block.png", "ui/button.png", halfW - 800, halfH - 300 + i * 125, 600, 125);
+        //MusicGroup->AddNewObject(btn);
+        //music_blocks.push_back(btn);
+        //musicblock.blocks.push_back(btn);
+        //btn->SetOnClickCallback(std::bind(&MusicSelection::BackOnClick, this));
+        //AddNewControlObject(btn);
+    }*/
+    //MusicGroup->RemoveObject(MusicGroup->GetObjects().front()->GetObjectIterator());
+    for(int i = 0; i < 6; ++i){
+        btn = new Engine::ImageButton("music_block.png", "ui/button.png", halfW - 850, halfH - 400 + i * 125, 600, 125);
+        MusicGroup->AddNewObject(btn);
+        btn->SetOnClickCallback(std::bind(&MusicSelection::ShowPreview, this));
+        //AddNewControlObject(btn);
     }
+
+    //MusicGroup->RemoveObject(MusicGroup->GetObjects().front()->GetObjectIterator());
 }
 
 void MusicSelection::Update(float deltaTime) {
     IScene::Update(deltaTime);
 }
+void MusicSelection::Draw() const {
+    const int w = Engine::GameEngine::GetInstance().GetScreenSize().x, h = Engine::GameEngine::GetInstance().GetScreenSize().y;
+    //IScene::Draw();
+    int start = 0, end = 8;
+    auto it = MusicGroup->GetObjects().front()->GetObjectIterator();
+    for(int i = 0; i < start; ++i){
+        it++;
+    }
+    for(int i = 0; it != MusicGroup->GetObjects().back()->GetObjectIterator(), i < 8; ++it, ++i){
+        auto label = new Engine::Label("Music " + std::to_string(i), "orbitron/medium.ttf", 40, w/2 -850, h/2-350+i*125, 255, 255, 255, 255, 0.5, 0.5);
+        label->Draw();
+        //it->second->Position = Engine::Point(Engine::GameEngine::GetInstance().GetScreenSize().x / 2 - 850, Engine::GameEngine::GetInstance().GetScreenSize().y / 2 - 400 + i * 125);
+        //it->second->Draw();
+    }
 
+}
 void MusicSelection::BackOnClick() {
     Engine::GameEngine::GetInstance().ChangeScene("main-menu");
 }
 
 void MusicSelection::SettingsOnClick() {
     Engine::GameEngine::GetInstance().ChangeScene("settings");
-
 }
 void MusicSelection::Terminate() {
     IScene::Terminate();
+}
+void MusicSelection::ShowPreview() {
+
 }
 
 /*
