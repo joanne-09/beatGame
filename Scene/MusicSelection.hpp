@@ -20,6 +20,8 @@
 
 
 class MusicSelection final : public Engine::IScene{
+private:
+    Engine::Group *MusicGroup;
 public:
     MusicSelection() = default;
     void Initialize() override;

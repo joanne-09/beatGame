@@ -7,9 +7,10 @@
 #include "Engine/Headers.hpp"
 #include<bits/stdc++.h>
 
+class PlayScene;
 class MusicBlock : public Engine::Sprite{
 public:
-    MusicBlock(std::string baseimg, std::string profileimg, int x, int y);
+    MusicBlock(std::string baseimg, std::string profileimg, float x, float y, float width, float height);
 };
 
 

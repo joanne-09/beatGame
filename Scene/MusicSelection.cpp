@@ -23,6 +23,12 @@ int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
     btn->SetOnClickCallback(std::bind(&MusicSelection::SettingsOnClick, this));
     AddNewControlObject(btn);
     AddNewObject(new Engine::Label("Settings", font, 48, halfW + 400, halfH / 2 + 350, 255, 255, 255, 255, 0.5, 0.5));
+
+
+    AddNewObject(MusicGroup = new Engine::Group());
+    for(int i = 0; i < 4; ++i){
+        MusicGroup->AddNewObject(new MusicBlock("ui/musicblock.png", "ui/musicblock.png", halfW - 500, halfH - 300 + i * 200, 400, 150));
+    }
 }
 
 void MusicSelection::Update(float deltaTime) {
@@ -40,3 +46,15 @@ void MusicSelection::SettingsOnClick() {
 void MusicSelection::Terminate() {
     IScene::Terminate();
 }
+
+/*
+Drawing:
+On the left side of the screen, preview will show on the right, play at the bottom of preview
+Treat each "music" as a sprite
+Every music has an activation area
+Use a container to store all music
+Draw a given range in the container, (with offset)
+Use arrow keys to navigate
+Preview:
+Displays information about a music (high score, difficulty, BPM...)
+*/
