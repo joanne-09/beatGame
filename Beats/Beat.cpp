@@ -11,6 +11,7 @@
 
 Beat::Beat(std::string img, float x, float y, float speed, int lane, float w, float h) : Engine::Sprite(img, x, y, w, h, 0, 0) {
     Velocity = Engine::Point(0, 1) * speed;
+    this->speed = speed;
     this->lane = lane;
     this->fallSecond = 1040 / speed;
 }
@@ -29,14 +30,21 @@ void Beat::Update(float deltaTime) {
     // check if the beat is hit
     for(auto& it : scene->LaneGroup->GetObjects()) {
         Lane* lane = dynamic_cast<Lane*>(it);
-        if (lane->laneID != this->lane) continue;
-        if (hit) continue;
+        if (lane->laneID != this->lane || hit) continue;
+        if(this->fallSecond > 125.0/speed) continue;
 
         if(this->fallSecond <= 0) {
-            ;
-        }else {
-            ;
-        }
+            lane->status = "Miss";
+        }else if(this->fallSecond <= 40.0/speed && lane->clicked){
+            lane->status = "Good";
+        }else if(this->fallSecond <= 80.0/speed && lane->clicked){
+            lane->status = "Perfect";
+        }else if(this->fallSecond <= 125.0/speed && lane->clicked){
+            lane->status = "Rush";
+        }else continue;
+
+        hit = true;
+        lane->ticks = 20;
     }
 
     // check if the beat is out of boundary

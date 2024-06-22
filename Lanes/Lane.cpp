@@ -16,22 +16,27 @@ void Lane::Draw() const {
     al_draw_line(Position.x, Size.y - 40, Position.x + Size.x, Size.y - 40, al_map_rgb(124, 173, 247), 7);
 
     if(clicked) clickEffect->Draw();
+    SetStatus();
 }
 
 void Lane::Update(float deltaTime) {
     Engine::IObject::Update(deltaTime);
 
-    SetStatus();
+    if(ticks) ticks--;
+    if(!ticks) {
+        status = "None";
+        return;
+    }
 }
 
-void Lane::SetStatus() {
+void Lane::SetStatus() const {
     if(status == "Miss") {
-        ;
+        Miss->Draw();
     }else if(status == "Good"){
-        ;
+        Good->Draw();
     }else if(status == "Perfect") {
-        ;
+        Perfect->Draw();
     }else if(status == "Rush"){
-        ;
+        Rush->Draw();
     }
 }
