@@ -33,7 +33,7 @@ void PlayScene::Initialize() {
 
     ReadMapWave();
     // set up lasting time of each beat
-    bpm = 120; // bpm was 0
+    bpm = 136; // bpm was 0
     ticks = 3;
 
     // set up lanes
@@ -117,7 +117,7 @@ void PlayScene::SetUpBeat(float deltaTime) {
 
     for(int i=0; i<laneCount; i++) {
         if(cur[i] == '1') {
-            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, 125.0 * bpm / 60.0, i+1);
+            Beat* beat = new Beat("ui/beat.png", width/2 - 500 + i*250 + 10, 0, 2.0 * 125.0 * bpm / 60.0, i+1);
             BeatGroup->AddNewObject(beat);
         }
     }

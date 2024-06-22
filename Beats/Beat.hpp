@@ -9,7 +9,7 @@
 class PlayScene; //forward declaration
 class Beat : public Engine::Sprite{
 private:
-    float fallSecond;
+    float fallSecond, speed;
     int lane;
     bool hit = false;
 protected:

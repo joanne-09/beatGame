@@ -18,7 +18,7 @@ public:
     Lane(int id, std::string img, float x, float y, float w = 250, float h = 1080);
     void Draw() const override;
     void Update(float deltaTime) override;
-    void SetStatus();
+    void SetStatus() const;
 };
 
 #endif //BEAT_GAME_LANE_HPP
