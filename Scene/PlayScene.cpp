@@ -23,6 +23,13 @@
 
 std::unordered_map<int, int> PlayScene::keyMapping = {{ALLEGRO_KEY_D, 1}, {ALLEGRO_KEY_F, 2},
     {ALLEGRO_KEY_J, 3}, {ALLEGRO_KEY_K, 4}};
+
+//PlayScene TODO:
+// 1. Read bpm from musicselection scene
+// 2. Add buffer time for each song
+// 3. Store score
+
+
 void PlayScene::Initialize() {
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -91,7 +98,7 @@ void PlayScene::OnKeyUp(int keyCode) {
 }
 
 void PlayScene::ReadMapWave() {
-    FileIO io("../Resource/beatmaps/test.txt");
+    FileIO io("../Resource/beatmaps/perfect_night_easy.txt");
     beatmapData = io.readBeatmap();
 }
 
