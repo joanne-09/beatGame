@@ -20,6 +20,10 @@
 
 
 class MusicSelection final : public Engine::IScene{
+private:
+    Engine::Group *MusicGroup;
+    bool preview = false;
+    int DrawId = 0;
 public:
     MusicSelection() = default;
     void Initialize() override;
@@ -27,6 +31,8 @@ public:
     void Update(float deltaTime) override;
     void BackOnClick();
     void SettingsOnClick();
+    void Draw() const override;
+    void ShowPreview(int idx);
 };
 
 
