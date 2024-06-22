@@ -143,3 +143,7 @@ void PlayScene::LaneEffect(int keyCode, bool type) {
     auto temp = (Lane*)*next(LaneGroup->GetObjects().begin(), id-1);
     temp->clicked = type;
 }
+
+void PlayScene::UpdateScore(int score) {
+    this->score += score;
+}

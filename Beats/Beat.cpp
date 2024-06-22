@@ -37,10 +37,13 @@ void Beat::Update(float deltaTime) {
             lane->status = "Miss";
         }else if(this->fallSecond <= 40.0/speed && lane->clicked){
             lane->status = "Good";
+            scene->UpdateScore(1);
         }else if(this->fallSecond <= 80.0/speed && lane->clicked){
             lane->status = "Perfect";
+            scene->UpdateScore(2);
         }else if(this->fallSecond <= 125.0/speed && lane->clicked){
             lane->status = "Rush";
+            scene->UpdateScore(1);
         }else continue;
 
         hit = true;

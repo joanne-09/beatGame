@@ -42,6 +42,7 @@ public:
     void SetUpBeat(float deltaTime);
     void UpdateBeat(float deltaTime);
     void LaneEffect(int keyCode, bool type);
+    void UpdateScore(int score);
 };
 
 
