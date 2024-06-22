@@ -30,9 +30,10 @@ void Beat::Update(float deltaTime) {
     for(auto& it : scene->LaneGroup->GetObjects()) {
         Lane* lane = dynamic_cast<Lane*>(it);
         if (lane->laneID != this->lane) continue;
+        if (hit) continue;
 
         if(this->fallSecond <= 0) {
-            scene->BeatGroup->RemoveObject(objectIterator);
+            ;
         }else {
             ;
         }

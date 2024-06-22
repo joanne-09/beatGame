@@ -11,6 +11,7 @@ class Beat : public Engine::Sprite{
 private:
     float fallSecond;
     int lane;
+    bool hit = false;
 protected:
     PlayScene* getPlayScene();
 public:

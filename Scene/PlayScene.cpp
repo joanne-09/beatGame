@@ -21,7 +21,8 @@
 #include "UI/Component/ImageButton.hpp"
 #include "PlayScene.hpp"
 
-std::unordered_map<int, int> PlayScene::keyMapping;
+std::unordered_map<int, int> PlayScene::keyMapping = {{ALLEGRO_KEY_D, 1}, {ALLEGRO_KEY_F, 2},
+    {ALLEGRO_KEY_J, 3}, {ALLEGRO_KEY_K, 4}};
 void PlayScene::Initialize() {
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -43,6 +44,9 @@ void PlayScene::Initialize() {
     }
 
     AddNewObject(BeatGroup = new Engine::Group());
+
+    // set up music
+    songId = AudioHelper::PlayAudio("music/perfectNight_136.ogg");
 }
 
 void PlayScene::Terminate() {
@@ -106,7 +110,7 @@ void PlayScene::SetUpBeat(float deltaTime) {
     if(beatmapData.empty()) return;
 
     // reset ticks
-    ticks = 60.0 / bpm;
+    ticks = 60.0 / bpm / 2.0;
 
     auto cur = beatmapData.front();
     beatmapData.pop_front();
