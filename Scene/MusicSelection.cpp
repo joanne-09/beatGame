@@ -76,7 +76,7 @@ void MusicSelection::Draw() const {
         block3->Visible = true;
         auto img = new Engine::Label("Preview" + std::to_string(DrawId), "orbitron/medium.ttf", 40, w/2 + 200, h/2 - 325, 255, 255, 255, 255, 0.5, 0.5);
         auto cur_song = songs[DrawId];
-        auto name = new Engine::Label(cur_song.name, "orbitron/medium.ttf", 75, w/2 + 300, h/2 - 325, 255, 255, 255, 255, 0.5, 0.5);
+        auto name = new Engine::Label(cur_song.name, "orbitron/medium.ttf", 75, w/2 + 300, h/2 - 375, 255, 255, 255, 255, 0.5, 0.5);
         name->Draw();
         //img->Draw();
         auto label1 = new Engine::Label("Easy", "orbitron/medium.ttf", 60, w/2-50, h/2+130 , 0, 255, 0, 255, 0.5, 0.5);
@@ -103,10 +103,30 @@ void MusicSelection::Draw() const {
 
         //high score
         auto colors = GenColor();
-        int rand_r = colors[0], rand_g = colors[1], rand_b = colors[2];
-        cur_song.high_score = 1000000000;
-        auto high_score = new Engine::Label("High Score: " + std::to_string(cur_song.high_score), "orbitron/medium.ttf", 60, w/2 + 300, h/2 - 200, rand_r, rand_g, rand_b, 255, 0.5, 0.5);
+        int rand_r = colors[0], rand_g = colors[1], rand_b = colors[2], curdiff;
+        if(block1->mouseIn){
+            curdiff = 0;
+        }else if(block2->mouseIn){
+            curdiff = 1;
+        }else if(block3->mouseIn){
+            curdiff = 2;
+        }else{
+            curdiff = 0;
+        }
+        cur_song.high_score = GetHighScoreInfo(curdiff).first;
+        std::string username = GetHighScoreInfo(curdiff).second;
+
+        static float anchor = 0, offset = 0.02;
+        if(cur_tick%2 == 0){
+            anchor += offset;
+            if(anchor >= 0.8) offset = -0.02;
+            if(anchor <= 0.2) offset = 0.02;
+        }
+
+        auto high_score = new Engine::Label("High Score: " + std::to_string(cur_song.high_score), "orbitron/medium.ttf", 60, w/2 + 300, h/2 - 250, rand_r, rand_g, rand_b, 255, anchor, 0.5);
+        auto high_score_name = new Engine::Label(username, "orbitron/medium.ttf", 60, w/2 + 300, h/2 - 175 , rand_r, rand_g, rand_b, 255, 0.5, 0.5);
         high_score->Draw();
+        high_score_name->Draw();
     }
 }
 
@@ -158,6 +178,28 @@ void MusicSelection::ShowPreview(int idx) {
     DrawId = idx;
 }
 
+std::pair<int, std::string> MusicSelection::GetHighScoreInfo(int diff) const{
+    std::string songName = songs[DrawId].name;
+    std::string difficultyStr = diff == 0 ? "Easy" : diff == 1 ? "Normal" : "Hard";
+    std::string filepath = "../Resource/highscores/" + songName + difficultyStr + ".txt";
+    std::ifstream infile(filepath);
+
+    std::string name, song, inscore, curdiff;
+    if(infile){
+        std::string temp;
+        getline(infile, temp);
+        std::stringstream ss(temp);
+        std::getline(ss, name, ':');
+        std::getline(ss, song, ':');
+        std::getline(ss, inscore, ':');
+        infile.close();
+    }else{
+        inscore = "0";
+    }
+    if(inscore.empty()) inscore = "0";
+    if(name.empty()) name = "Player";
+    return {stoi(inscore), name};
+}
 /*
 Drawing:
 On the left side of the screen, preview will show on the right, play at the bottom of preview

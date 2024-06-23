@@ -86,16 +86,16 @@ void WinScene::UIsetup(int halfW, int halfH){
 void WinScene::GradeSetup(int halfW, int halfH) {
     const std::string font = "orbitron/medium.ttf";
     // score total 100000000
-    if(finalScore <= 40000000) {
+    if(finalScore <= 20000000) {
         grade = "F";
         color = {255, 36, 20, 200};
-    } else if(finalScore <= 60000000) {
+    } else if(finalScore <= 40000000) {
         grade = "C";
         color = {238, 159, 22, 200};
-    } else if(finalScore <= 80000000) {
+    } else if(finalScore <= 60000000) {
         grade = "B";
         color = {238, 159, 22, 200};
-    } else if(finalScore <= 95000000) {
+    } else if(finalScore <= 8000000) {
         grade = "A";
         color = {247, 241, 51, 200};
     } else {

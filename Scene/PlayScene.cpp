@@ -36,6 +36,7 @@ float PlayScene::bpm = 136, PlayScene::difficulty = 4;
 
 
 void PlayScene::Initialize() {
+    endTicks = -1;
     PlayScene::WriteScore();
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
@@ -198,13 +199,24 @@ void PlayScene::WriteScore() {
     std::string filepath = "../Resource/highscores/" + songName + difficultyStr + ".txt";
     std::ifstream infile(filepath);
     std::string name, song, inscore, curdiff;
-    while(infile) {
-        infile >> name >> song >> inscore;
+    if(!infile) {
+        std::ofstream outfile(filepath, std::ios::out);
+        //outfile << "Player" << " " << songName << " " << score << std::endl;
+        outfile.close();
+        inscore = "0";
+    }else{
+        std::string temp;
+        getline(infile, temp);
+        std::stringstream ss(temp);
+        std::getline(ss, name, ':');
+        std::getline(ss, song, ':');
+        std::getline(ss, inscore, ':');
         infile.close();
     }
+    if(inscore.empty()) inscore = "0";
     if(score > std::stoi(inscore)){
         std::ofstream outfile(filepath, std::ios::out);
-        outfile << userName << " " << songName << " " << score << std::endl;
+        outfile << userName << ":" << songName << ":" << score << std::endl;
         outfile.close();
     }
 }

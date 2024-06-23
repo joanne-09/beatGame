@@ -11,17 +11,22 @@
 #include "Engine/Point.hpp"
 #include "Engine/Resources.hpp"
 #include "PlayScene.hpp"
+#include <bits/stdc++.h>
 std::string PlayScene::userName;
+
 void MainMenu::Initialize() {
 
     int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
     int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
     int halfW = w / 2;
     int halfH = h / 2;
+
     Engine::ImageButton *btn;
 
     const std::string font = "orbitron/medium.ttf";
-    AddNewObject(new Engine::Label("Beat Game", font, 120, halfW, halfH / 5 + 50, 10, 255, 255, 255, 0.5, 0.5));
+//    auto colors = GenColor();
+//    int rand_r = colors[0], rand_g = colors[1], rand_b = colors[2];
+//    AddNewObject(new Engine::Label("Beat Game", font, 120, halfW, halfH / 5 + 50, rand_r, rand_g, rand_b, 255, 0.5, 0.5));
 
     btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 800, halfH + 250, 400, 100);
     btn->SetOnClickCallback(std::bind(&MainMenu::StartOnClick, this));
@@ -50,8 +55,21 @@ void MainMenu::Terminate() {
 void MainMenu::Update(float deltaTime) {
     IScene::Update(deltaTime);
     inputBox->Update(deltaTime);
+    cur_tick += 1;
 }
 
+void MainMenu::Draw() const {
+    int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
+    int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
+    int halfW = w / 2;
+    int halfH = h / 2;
+    IScene::Draw();
+    const std::string font = "orbitron/medium.ttf";
+    std::vector<int> colors = GenColor();
+    int rand_r = colors[0], rand_g = colors[1], rand_b = colors[2];
+    auto label = new Engine::Label("Beat Game", font, 120, halfW, halfH / 5 + 50, rand_r, rand_g, rand_b, 255, 0.5, 0.5);
+    label->Draw();
+}
 void MainMenu::StartOnClick() {
     name = inputBox->getName() == "" ? "Player" : inputBox->getName();
     //Engine::GameEngine::GetInstance().ChangeScene("play");
@@ -71,4 +89,27 @@ void MainMenu::DonateOnClick() {
 #elif defined _WIN32
     system(("start " + link).c_str());
 #endif
+}
+
+
+std::vector<int> MainMenu::GenColor() const{
+    std::vector<std::vector<int>> rainbow = {{
+             {255, 0, 0},    // Red
+             {255, 127, 0},  // Orange
+             {255, 255, 0},  // Yellow
+             {0, 255, 0},    // Green
+             {255, 0, 255},    // Blue
+             {255, 0, 130},   // Indigo
+             {143, 187, 255}   // Violet
+     }};
+    static int rand_r, rand_g, rand_b;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 6);
+    if(cur_tick % 5 == 0) {
+        rand_r = rainbow[dis(gen)][0];
+        rand_g = rainbow[dis(gen)][1];
+        rand_b = rainbow[dis(gen)][2];
+    }
+    return {rand_r, rand_g, rand_b};
 }

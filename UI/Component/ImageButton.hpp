@@ -15,7 +15,7 @@ namespace Engine {
 	class ImageButton: public Image, public IControl {
 	protected:
 		// Determines whether mouse is in the button.
-		bool mouseIn = false;
+
 		// The smart pointer that points to bitmap for mouse-out display.
 		std::shared_ptr<ALLEGRO_BITMAP> imgOut;
 		// The smart pointer that points to bitmap for mouse-in display.
@@ -24,6 +24,7 @@ namespace Engine {
 		std::function<void()> OnClickCallback;
 	public:
 		// Whether the button can be pressed.
+        bool mouseIn = false;
 		bool Enabled = true;
         bool clicked = false;
 		/// <summary>

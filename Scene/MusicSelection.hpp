@@ -49,6 +49,7 @@ public:
     void Draw() const override;
     void ShowPreview(int idx);
     std::vector<int> GenColor() const;
+    std::pair<int, std::string> GetHighScoreInfo(int diff) const;
 };
 
 
