@@ -21,6 +21,7 @@ private:
 protected:
     int SpeedMult;
 public:
+    static std::string userName;
     static std::string songName;
     static float bpm, difficulty;
 
@@ -52,6 +53,7 @@ public:
     void LaneEffect(int keyCode, bool type);
     void LaneStatus(int keyCode);
     void UpdateScore();
+    void WriteScore();
 };
 
 

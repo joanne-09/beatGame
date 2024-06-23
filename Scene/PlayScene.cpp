@@ -36,6 +36,7 @@ float PlayScene::bpm = 136, PlayScene::difficulty = 4;
 
 
 void PlayScene::Initialize() {
+    PlayScene::WriteScore();
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
 
@@ -69,6 +70,7 @@ void PlayScene::Initialize() {
 }
 
 void PlayScene::Terminate() {
+    PlayScene::WriteScore();
     AudioHelper::StopBGM(songId);
     IScene::Terminate();
 }
@@ -194,4 +196,20 @@ void PlayScene::UpdateScore() {
     /// one perfect: 100000000 / totalCount
     /// one good, one rush: perfect * difficulty / 20
     score = perfectCount * (totalScore / totalCount) + (goodCount + rushCount) * (totalScore / totalCount) * (difficulty / 15.0);
+}
+
+void PlayScene::WriteScore() {
+    std::string filepath = "../Resource/highscores/" + songName + ".txt";
+    std::ifstream infile(filepath);
+    std::string name, song, inscore;
+    while(infile) {
+        infile >> name >> song >> inscore;
+        std::cout << "info:" <<  name << song << score << std::endl;
+        infile.close();
+    }
+    if(score > std::stoi(inscore)){
+        std::ofstream outfile(filepath, std::ios::out);
+        outfile << userName << " " << songName << " " << score << std::endl;
+        outfile.close();
+    }
 }

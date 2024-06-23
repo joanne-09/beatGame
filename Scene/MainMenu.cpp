@@ -10,7 +10,8 @@
 #include "UI/Component/Label.hpp"
 #include "Engine/Point.hpp"
 #include "Engine/Resources.hpp"
-
+#include "PlayScene.hpp"
+std::string PlayScene::userName;
 void MainMenu::Initialize() {
 
     int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
@@ -54,6 +55,7 @@ void MainMenu::Update(float deltaTime) {
 void MainMenu::StartOnClick() {
     name = inputBox->getName() == "" ? "Player" : inputBox->getName();
     //Engine::GameEngine::GetInstance().ChangeScene("play");
+    PlayScene::userName = name;
     Engine::GameEngine::GetInstance().ChangeScene("select");
 }
 
