@@ -25,7 +25,8 @@ public:
     int bpm;
     std::vector<int> difficulty;
     int high_score;
-    Song(std::string name, bool preview, int bpm, std::vector<int> difficulty, int high_score): name(std::move(name)), preview(preview), bpm(bpm), difficulty(difficulty), high_score(high_score){}
+    Song(std::string name, bool preview, int bpm, std::vector<int> difficulty, int high_score): name(std::move(name)), preview(preview), bpm(bpm), difficulty(difficulty), high_score(high_score){};
+
 };
 
 class MusicSelection final : public Engine::IScene{
@@ -35,6 +36,7 @@ private:
     bool preview = false;
     int DrawId = 0;
     std::vector<Song> songs;
+    Engine::ImageButton *block1, *block2, *block3;
 public:
     MusicSelection() = default;
     void Initialize() override;
