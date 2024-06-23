@@ -54,7 +54,7 @@ void MainMenu::Update(float deltaTime) {
 void MainMenu::StartOnClick() {
     name = inputBox->getName() == "" ? "Player" : inputBox->getName();
     //Engine::GameEngine::GetInstance().ChangeScene("select");
-    Engine::GameEngine::GetInstance().ChangeScene("play");
+    Engine::GameEngine::GetInstance().ChangeScene("select");
 }
 
 void MainMenu::SettingsOnClick() {

@@ -18,12 +18,23 @@
 #ifndef BEAT_GAME_MUSICSELECTION_HPP
 #define BEAT_GAME_MUSICSELECTION_HPP
 
+class Song{
+public:
+    std::string name;
+    bool preview;
+    int bpm;
+    std::vector<int> difficulty;
+    int high_score;
+    Song(std::string name, bool preview, int bpm, std::vector<int> difficulty, int high_score): name(std::move(name)), preview(preview), bpm(bpm), difficulty(difficulty), high_score(high_score){}
+};
 
 class MusicSelection final : public Engine::IScene{
 private:
+    int cur_tick;
     Engine::Group *MusicGroup;
     bool preview = false;
     int DrawId = 0;
+    std::vector<Song> songs;
 public:
     MusicSelection() = default;
     void Initialize() override;
@@ -33,7 +44,9 @@ public:
     void SettingsOnClick();
     void Draw() const override;
     void ShowPreview(int idx);
+    std::vector<int> GenColor() const;
 };
+
 
 
 #endif //BEAT_GAME_MUSICSELECTION_HPP
