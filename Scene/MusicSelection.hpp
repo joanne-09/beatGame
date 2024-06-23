@@ -43,7 +43,7 @@ public:
     void Terminate() override;
     void Update(float deltaTime) override;
     void BackOnClick();
-    void BlockOnClick();
+    void BlockOnClick(const Song& song, const int diff) const;
     void SettingsOnClick();
     void Draw() const override;
     void ShowPreview(int idx);

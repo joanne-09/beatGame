@@ -15,7 +15,7 @@
 int main(int argc, char **argv) {
 	Engine::LOG::SetConfig(true);
 	Engine::GameEngine& game = Engine::GameEngine::GetInstance();
-    //Server::Upload();
+    Server::Upload();
     // TODO: [HACKATHON-1-SCENE] (3/4): Register Scenes here
     game.AddNewScene("main-menu", new MainMenu());
     game.AddNewScene("play", new PlayScene());

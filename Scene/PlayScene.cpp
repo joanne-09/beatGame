@@ -39,7 +39,7 @@ void PlayScene::Initialize() {
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
 
-    songName = "perfect_night_easy";
+    //songName = "perfect_night_easy";
 
     // UI score setup
     score = 0;
@@ -48,9 +48,9 @@ void PlayScene::Initialize() {
     totalCount = rushCount = perfectCount = goodCount = missCount = 0;
     ReadMapWave();
     // set up lasting time of each beat
-    bpm = 136; // bpm was 0
+    //bpm = 136; // bpm was 0
     ticks = 3;
-    difficulty = 4;
+    //difficulty = 4;
 
     // set up lanes
     laneCount = 4;
