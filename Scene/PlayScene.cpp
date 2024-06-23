@@ -26,6 +26,9 @@ std::unordered_map<int, int> PlayScene::keyMapping = {{ALLEGRO_KEY_D, 1}, {ALLEG
 int PlayScene::score = 0;
 float PlayScene::totalCount = 0, PlayScene::rushCount = 0, PlayScene::perfectCount = 0, PlayScene::goodCount = 0, PlayScene::missCount = 0;
 
+std::string PlayScene::songName = "perfect_night_easy";
+float PlayScene::bpm = 136, PlayScene::difficulty = 4;
+
 //PlayScene TODO:
 // 1. Read bpm from musicselection scene
 // 2. Add buffer time for each song
@@ -60,6 +63,9 @@ void PlayScene::Initialize() {
 
     // set up music
     songId = AudioHelper::PlayAudio("music/" + songName + ".ogg");
+
+    // for debug
+    SpeedMult = 1;
 }
 
 void PlayScene::Terminate() {
@@ -68,16 +74,18 @@ void PlayScene::Terminate() {
 }
 
 void PlayScene::Update(float deltaTime) {
-    IScene::Update(deltaTime);
+    for (int i = 0; i < SpeedMult; i++) {
+        IScene::Update(deltaTime);
 
-    // add beat to scene
-    if(endTicks == -1) SetUpBeat(deltaTime);
-    UpdateBeat(deltaTime);
+        // add beat to scene
+        if(endTicks == -1) SetUpBeat(deltaTime);
+        UpdateBeat(deltaTime);
 
-    if(endTicks > 0) endTicks --;
-    if(endTicks == 0) {
-        AudioHelper::StopBGM(songId);
-        Engine::GameEngine::GetInstance().ChangeScene("win");
+        if(endTicks > 0) endTicks --;
+        if(endTicks == 0) {
+            AudioHelper::StopBGM(songId);
+            Engine::GameEngine::GetInstance().ChangeScene("win");
+        }
     }
 }
 
@@ -100,6 +108,11 @@ void PlayScene::OnMouseUp(int button, int mx, int my) {
 
 void PlayScene::OnKeyDown(int keyCode) {
     IScene::OnKeyDown(keyCode);
+
+    if (keyCode >= ALLEGRO_KEY_0 && keyCode <= ALLEGRO_KEY_9) {
+        // Hotkey for Speed up.
+        SpeedMult = keyCode - ALLEGRO_KEY_0;
+    }
 
     LaneEffect(keyCode, true);
     LaneStatus(keyCode);
@@ -181,5 +194,5 @@ void PlayScene::UpdateScore() {
     /// one perfect: 100000000 / totalCount
     /// one good, one rush: perfect * difficulty / 20
 
-    score = perfectCount * (totalScore / totalCount) + (goodCount + rushCount) * (totalScore / totalCount) * (difficulty / 20.0);
+    score = perfectCount * (totalScore / totalCount) + (goodCount + rushCount) * (totalScore / totalCount) * (difficulty / 15.0);
 }

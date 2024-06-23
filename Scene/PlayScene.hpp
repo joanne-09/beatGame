@@ -15,11 +15,15 @@ class Lane;
 class PlayScene final : public Engine::IScene{
 private:
     ALLEGRO_SAMPLE_ID songId;
-    float Speed, ticks, endTicks = -1, bpm, difficulty;
+    float Speed, ticks, endTicks = -1;
     int width, height, laneCount;
     int totalScore = 100000000;
+protected:
+    int SpeedMult;
 public:
-    std::string songName;
+    static std::string songName;
+    static float bpm, difficulty;
+
     static int score;
     static float totalCount, rushCount, perfectCount, goodCount, missCount;
 

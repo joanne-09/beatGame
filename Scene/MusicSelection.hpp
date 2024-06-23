@@ -41,6 +41,7 @@ public:
     void Terminate() override;
     void Update(float deltaTime) override;
     void BackOnClick();
+    void BlockOnClick();
     void SettingsOnClick();
     void Draw() const override;
     void ShowPreview(int idx);
