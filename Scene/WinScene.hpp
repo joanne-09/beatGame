@@ -9,7 +9,7 @@ class WinScene final : public Engine::IScene {
 private:
     float ticks;
     ALLEGRO_SAMPLE_ID bgmId;
-    float finalScore;
+    int finalScore;
     int rushCount, perfectCount, goodCount, missCount;
 public:
     explicit WinScene() = default;

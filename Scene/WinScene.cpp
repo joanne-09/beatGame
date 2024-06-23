@@ -29,12 +29,12 @@ void WinScene::Initialize() {
     btn = new Engine::ImageButton("ui/button.png", "ui/button_hovered.png", halfW - 200, halfH * 7 / 4 - 50, 400, 100);
     btn->SetOnClickCallback(std::bind(&WinScene::BackOnClick, this));
     AddNewControlObject(btn);
-    AddNewObject(new Engine::Label("Back", "pirulen.ttf", 48, halfW, halfH * 7 / 4, 0, 0, 0, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Back", "pirulen.ttf", 48, halfW, halfH * 7 / 4, 255, 255, 255, 255, 0.5, 0.5));
 
     AddNewObject(new Engine::Label("Final Score: " + std::to_string(finalScore), "pirulen.ttf", 48, halfW, halfH / 2 - 10, 255, 255, 255, 255, 0.5, 0.5));
-    AddNewObject(new Engine::Label("Rush: " + std::to_string(rushCount), "pirulen.ttf", 48, halfW, halfH / 2 + 50, 255, 255, 255, 255, 0.5, 0.5));
-    AddNewObject(new Engine::Label("Perfect: " + std::to_string(perfectCount), "pirulen.ttf", 48, halfW, halfH / 2 + 110, 255, 255, 255, 255, 0.5, 0.5));
-    AddNewObject(new Engine::Label("Good: " + std::to_string(goodCount), "pirulen.ttf", 48, halfW, halfH / 2 + 170, 255, 255, 255, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Rush: " + std::to_string(rushCount), "pirulen.ttf", 48, halfW, halfH / 2 + 50, 213, 43, 43, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Perfect: " + std::to_string(perfectCount), "pirulen.ttf", 48, halfW, halfH / 2 + 110, 63, 218, 63, 255, 0.5, 0.5));
+    AddNewObject(new Engine::Label("Good: " + std::to_string(goodCount), "pirulen.ttf", 48, halfW, halfH / 2 + 170, 246, 215, 10, 255, 0.5, 0.5));
     AddNewObject(new Engine::Label("Miss: " + std::to_string(missCount), "pirulen.ttf", 48, halfW, halfH / 2 + 230, 255, 255, 255, 255, 0.5, 0.5));
 }
 

@@ -71,8 +71,14 @@ void PlayScene::Update(float deltaTime) {
     IScene::Update(deltaTime);
 
     // add beat to scene
-    SetUpBeat(deltaTime);
+    if(endTicks == -1) SetUpBeat(deltaTime);
     UpdateBeat(deltaTime);
+
+    if(endTicks > 0) endTicks --;
+    if(endTicks == 0) {
+        AudioHelper::StopBGM(songId);
+        Engine::GameEngine::GetInstance().ChangeScene("win");
+    }
 }
 
 void PlayScene::Draw() const {
@@ -127,7 +133,10 @@ void PlayScene::DrawUIScore() const {
 void PlayScene::SetUpBeat(float deltaTime) {
     ticks -= deltaTime;
     if(ticks > 0) return;
-    if(beatmapData.empty()) return;
+    if(beatmapData.empty()) {
+        endTicks = 200;
+        return;
+    }
 
     // reset ticks
     ticks = 60.0 / bpm / 2.0;
