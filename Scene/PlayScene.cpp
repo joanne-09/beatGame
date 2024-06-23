@@ -180,6 +180,5 @@ void PlayScene::UpdateScore() {
     /// total score 100000000
     /// one perfect: 100000000 / totalCount
     /// one good, one rush: perfect * difficulty / 20
-
     score = perfectCount * (totalScore / totalCount) + (goodCount + rushCount) * (totalScore / totalCount) * (difficulty / 20.0);
 }

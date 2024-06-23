@@ -72,7 +72,6 @@ void MusicSelection::Draw() const {
         auto label1 = new Engine::Label("Easy", "orbitron/medium.ttf", 60, w/2-50, h/2+130 , 0, 255, 0, 255, 0.5, 0.5);
         auto difficulty1 = new Engine::Label(std::to_string(cur_song.difficulty[0]), "orbitron/medium.ttf", 100, w/2-50, h/2+20 , 0, 255, 0, 255, 0.5, 0.5);
         //block1->SetOnClickCallback()
-
         auto block2 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 + 200, h/2 - 100, 300, 300);
         auto label2 = new Engine::Label("Normal", "orbitron/medium.ttf", 60, w/2+350, h/2+130 , 255, 255, 0, 255, 0.5, 0.5);
         auto difficulty2 = new Engine::Label(std::to_string(cur_song.difficulty[1]), "orbitron/medium.ttf", 100, w/2+350, h/2+20 , 255, 255, 0, 255, 0.5, 0.5);
