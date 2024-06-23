@@ -31,6 +31,7 @@ public:
 
 class MusicSelection final : public Engine::IScene{
 private:
+    ALLEGRO_SAMPLE_ID bgmId;
     int cur_tick;
     Engine::Group *MusicGroup;
     bool preview = false;

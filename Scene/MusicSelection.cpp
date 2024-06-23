@@ -83,11 +83,15 @@ void MusicSelection::Draw() const {
         auto label1 = new Engine::Label("Easy", "orbitron/medium.ttf", 60, w/2-50, h/2+130 , 0, 255, 0, 255, 0.5, 0.5);
         auto difficulty1 = new Engine::Label(std::to_string(cur_song.difficulty[0]), "orbitron/medium.ttf", 100, w/2-50, h/2+20 , 0, 255, 0, 255, 0.5, 0.5);
         block1->SetOnClickCallback([this] { BlockOnClick(songs[DrawId], 0); });
+
         auto label2 = new Engine::Label("Normal", "orbitron/medium.ttf", 60, w/2+350, h/2+130 , 255, 255, 0, 255, 0.5, 0.5);
         auto difficulty2 = new Engine::Label(std::to_string(cur_song.difficulty[1]), "orbitron/medium.ttf", 100, w/2+350, h/2+20 , 255, 255, 0, 255, 0.5, 0.5);
+        block2->SetOnClickCallback([this] { BlockOnClick(songs[DrawId], 1); });
 
         auto label3 = new Engine::Label("Hard", "orbitron/medium.ttf", 60, w/2+750, h/2+130 , 255, 0, 0, 255, 0.5, 0.5);
         auto difficulty3 = new Engine::Label(std::to_string(cur_song.difficulty[2]), "orbitron/medium.ttf", 100, w/2+750, h/2+20 , 255, 0, 0, 255, 0.5, 0.5);
+        block3->SetOnClickCallback([this] { BlockOnClick(songs[DrawId], 2); });
+
         /*block1->Draw();
         block2->Draw();
         block3->Draw();*/
@@ -133,6 +137,7 @@ void MusicSelection::BackOnClick() {
 }
 
 void MusicSelection::BlockOnClick(const Song& song, const int diff) const{
+    // transfer song info to play scene
     PlayScene::songName = song.name;
     PlayScene::bpm = song.bpm;
     PlayScene::difficulty = song.difficulty[diff];
@@ -143,9 +148,12 @@ void MusicSelection::SettingsOnClick() {
     Engine::GameEngine::GetInstance().ChangeScene("settings");
 }
 void MusicSelection::Terminate() {
+    AudioHelper::StopBGM(bgmId);
     IScene::Terminate();
 }
 void MusicSelection::ShowPreview(int idx) {
+    AudioHelper::StopBGM(bgmId);
+    bgmId = AudioHelper::PlayAudio("music/" + songs[idx].name + ".ogg");
     preview = true;
     DrawId = idx;
 }
