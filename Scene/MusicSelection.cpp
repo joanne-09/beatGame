@@ -5,6 +5,7 @@
 #include "UI/Component/MusicBlock.hpp"
 #include "Scene/PlayScene.hpp"
 
+std::string PlayScene::difficultyStr;
 void MusicSelection::Initialize() {
     cur_tick = 0;
     int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
@@ -139,6 +140,7 @@ void MusicSelection::BlockOnClick(const Song& song, const int diff) const{
     PlayScene::songName = song.name;
     PlayScene::bpm = song.bpm;
     PlayScene::difficulty = song.difficulty[diff];
+    PlayScene::difficultyStr = diff == 0 ? "Easy" : diff == 1 ? "Normal" : "Hard";
     Engine::GameEngine::GetInstance().ChangeScene("play");
 }
 

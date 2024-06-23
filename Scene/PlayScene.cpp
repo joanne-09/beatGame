@@ -195,12 +195,11 @@ void PlayScene::UpdateScore() {
 }
 
 void PlayScene::WriteScore() {
-    std::string filepath = "../Resource/highscores/" + songName + ".txt";
+    std::string filepath = "../Resource/highscores/" + songName + difficultyStr + ".txt";
     std::ifstream infile(filepath);
-    std::string name, song, inscore;
+    std::string name, song, inscore, curdiff;
     while(infile) {
         infile >> name >> song >> inscore;
-        std::cout << "info:" <<  name << song << score << std::endl;
         infile.close();
     }
     if(score > std::stoi(inscore)){

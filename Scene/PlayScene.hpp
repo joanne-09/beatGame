@@ -22,7 +22,7 @@ protected:
     int SpeedMult;
 public:
     static std::string userName;
-    static std::string songName;
+    static std::string songName, difficultyStr;
     static float bpm, difficulty;
 
     static int score;
