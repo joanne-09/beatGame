@@ -1,1 +1,3 @@
-Player perfectnight 0
+Player ASMRZ 5593395 Easy
+Player ASMRZ 0 Normal
+Player ASMRZ 0 Hard

@@ -1,1 +1,3 @@
-Player ASMRZ 5593395
+Player ASMRZ 0 Easy
+Player ASMRZ 0 Normal
+Player ASMRZ 0 Hard
