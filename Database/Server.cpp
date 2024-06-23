@@ -16,3 +16,14 @@ bool Server::Upload() {
 #endif
     return true;
 }
+
+bool Server::Download() {
+#ifdef __APPLE__
+    system("./Scripts/mac_download");
+#elif defined _WIN32
+    system("start ./Scripts/windows_download.exe");
+#else
+    throw std::exception("Unsupported Operating System");
+#endif
+    return true;
+}

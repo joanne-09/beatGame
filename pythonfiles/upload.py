@@ -1,6 +1,4 @@
-import firebase_admin
 from firebase_admin import credentials, storage
-import json
 # Use a service account
 
 cred_dict = {
@@ -31,9 +29,4 @@ blob = bucket.blob('scoreboard.txt')
 with open('../Resource/scoreboard.txt', 'rb') as my_file:
     blob.upload_from_file(my_file)
 
-
-local_file_path = '../Resource/downloaded_scoreboard.txt'
-
-blob.download_to_filename(local_file_path)
-
-print('File downloaded')
+print('File Uploaded')

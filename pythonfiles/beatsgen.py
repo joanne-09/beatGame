@@ -1,5 +1,4 @@
 import random
-from random import randint
 info = [["night", "136", "162"], ["ASMRZ", "130", "149"], ["blingbling", "157", "172"], ["magnetic", "131", "138"],
         ["night_dancer", "117", "210"], ["racing_night", "130", "261"], ["unforgiven", "104", "189"],
         ["waiting_for_love", "128", "230"]]

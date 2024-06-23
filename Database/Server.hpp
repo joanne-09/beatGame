@@ -9,6 +9,7 @@
 class Server {
 public:
     static bool Upload();
+    static bool Download();
 };
 
 
