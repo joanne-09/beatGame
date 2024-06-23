@@ -12,8 +12,8 @@ private:
     Engine::Image *Miss, *Good, *Perfect, *Rush;
 public:
     int laneID;
-    bool clicked = false;
-    float ticks = 0;
+    bool effectClicked = false, statusClicked = false;
+    float ticks = 0, statusTicks = 0;
     std::string status = "None";
     Lane(int id, std::string img, float x, float y, float w = 250, float h = 1080);
     void Draw() const override;

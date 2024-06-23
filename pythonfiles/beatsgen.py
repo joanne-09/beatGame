@@ -4,7 +4,7 @@ song_name = input("Enter song name: ")
 bpm = int(input("Enter bmp: "))
 seconds = int(input("Enter seconds: "))
 buffer_lines = 0;
-total_lines = 2*bpm*(seconds//60)
+total_lines = 2*bpm*(seconds/60)
 
 def generate_beats() -> str:
     beats = ""
@@ -17,7 +17,7 @@ def generate_beats() -> str:
     return beats + "\n"
 
 with open(song_name+".txt", "w") as f:
-    for i in range(total_lines):
+    for i in range(int(total_lines)):
         if(i < buffer_lines):
             f.write("0000\n")
             continue;

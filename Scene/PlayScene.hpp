@@ -15,10 +15,14 @@ class Lane;
 class PlayScene final : public Engine::IScene{
 private:
     ALLEGRO_SAMPLE_ID songId;
-    float Speed, delay, ticks, bpm;
+    float Speed, ticks, bpm, difficulty;
     int width, height, laneCount;
-    int score;
+    int totalScore = 100000000;
 public:
+    std::string songName;
+    static int score;
+    static float totalCount, rushCount, perfectCount, goodCount, missCount;
+
     std::list<std::string> beatmapData;
     static std::unordered_map<int, int> keyMapping;
 
@@ -42,7 +46,8 @@ public:
     void SetUpBeat(float deltaTime);
     void UpdateBeat(float deltaTime);
     void LaneEffect(int keyCode, bool type);
-    void UpdateScore(int score);
+    void LaneStatus(int keyCode);
+    void UpdateScore();
 };
 
 

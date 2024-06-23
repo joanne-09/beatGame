@@ -69,6 +69,8 @@ add_executable(2024_I2P2_TowerDefense_with_answer
         Lanes/Lane.cpp
         Lanes/Lane.hpp
         Beats/Beat.cpp
+        Scene/WinScene.cpp
+        Scene/WinScene.hpp
 
         #        UI/Component/TextInput.cpp
 #        UI/Component/TextInput.hpp

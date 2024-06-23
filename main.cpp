@@ -8,6 +8,7 @@
 #include "Scene/PlayScene.hpp"
 #include "Scene/Scoreboard.hpp"
 #include "Scene/Settings.hpp"
+#include "Scene/WinScene.hpp"
 #include<bits/stdc++.h>
 #include<cstdlib>
 #include<Database/Server.hpp>
@@ -21,6 +22,8 @@ int main(int argc, char **argv) {
     game.AddNewScene("select", new MusicSelection());
     //game.AddNewScene("score", new Scoreboard());
     game.AddNewScene("settings", new Settings());
+    game.AddNewScene("win", new WinScene());
+
 	game.Start("main-menu", 60, 1920, 1080);
 	return 0;
 }

@@ -8,7 +8,6 @@
 #include "Scene/PlayScene.hpp"
 #include "Beat.hpp"
 
-
 Beat::Beat(std::string img, float x, float y, float speed, int lane, float w, float h) : Engine::Sprite(img, x, y, w, h, 0, 0) {
     Velocity = Engine::Point(0, 1) * speed;
     this->speed = speed;
@@ -35,15 +34,19 @@ void Beat::Update(float deltaTime) {
 
         if(this->fallSecond <= 0) {
             lane->status = "Miss";
-        }else if(this->fallSecond <= 40.0/speed && lane->clicked){
+            scene->missCount++;
+        }else if(this->fallSecond <= 40.0/speed && lane->statusClicked){
             lane->status = "Good";
-            scene->UpdateScore(1);
-        }else if(this->fallSecond <= 80.0/speed && lane->clicked){
+            scene->goodCount++;
+            scene->UpdateScore();
+        }else if(this->fallSecond <= 100.0/speed && lane->statusClicked){
             lane->status = "Perfect";
-            scene->UpdateScore(2);
-        }else if(this->fallSecond <= 125.0/speed && lane->clicked){
+            scene->perfectCount++;
+            scene->UpdateScore();
+        }else if(this->fallSecond <= 125.0/speed && lane->statusClicked){
             lane->status = "Rush";
-            scene->UpdateScore(1);
+            scene->rushCount++;
+            scene->UpdateScore();
         }else continue;
 
         hit = true;
