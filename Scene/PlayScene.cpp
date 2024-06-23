@@ -23,6 +23,8 @@
 
 std::unordered_map<int, int> PlayScene::keyMapping = {{ALLEGRO_KEY_D, 1}, {ALLEGRO_KEY_F, 2},
     {ALLEGRO_KEY_J, 3}, {ALLEGRO_KEY_K, 4}};
+int PlayScene::score = 0;
+float PlayScene::totalCount = 0, PlayScene::rushCount = 0, PlayScene::perfectCount = 0, PlayScene::goodCount = 0, PlayScene::missCount = 0;
 
 //PlayScene TODO:
 // 1. Read bpm from musicselection scene
@@ -34,14 +36,18 @@ void PlayScene::Initialize() {
     width = Engine::GameEngine::GetInstance().GetScreenSize().x;
     height = Engine::GameEngine::GetInstance().GetScreenSize().y;
 
+    songName = "perfect_night_easy";
+
     // UI score setup
     score = 0;
     UIScore = new Engine::Label(" ", "orbitron/medium.ttf", 48, width - 380, 50, 64, 64, 64, 255, 0, 0.5);
 
+    totalCount = rushCount = perfectCount = goodCount = missCount = 0;
     ReadMapWave();
     // set up lasting time of each beat
     bpm = 136; // bpm was 0
     ticks = 3;
+    difficulty = 4;
 
     // set up lanes
     laneCount = 4;
@@ -53,10 +59,11 @@ void PlayScene::Initialize() {
     AddNewObject(BeatGroup = new Engine::Group());
 
     // set up music
-    songId = AudioHelper::PlayAudio("music/perfectNight_136.ogg");
+    songId = AudioHelper::PlayAudio("music/" + songName + ".ogg");
 }
 
 void PlayScene::Terminate() {
+    AudioHelper::StopBGM(songId);
     IScene::Terminate();
 }
 
@@ -89,6 +96,7 @@ void PlayScene::OnKeyDown(int keyCode) {
     IScene::OnKeyDown(keyCode);
 
     LaneEffect(keyCode, true);
+    LaneStatus(keyCode);
 }
 
 void PlayScene::OnKeyUp(int keyCode) {
@@ -98,8 +106,13 @@ void PlayScene::OnKeyUp(int keyCode) {
 }
 
 void PlayScene::ReadMapWave() {
-    FileIO io("../Resource/beatmaps/perfect_night_easy.txt");
+    FileIO io("../Resource/beatmaps/" + songName + ".txt");
     beatmapData = io.readBeatmap();
+
+    for(auto& it : beatmapData) {
+        auto temp = std::count(it.begin(), it.end(), '1');
+        totalCount += temp;
+    }
 }
 
 void PlayScene::DrawUIScore() const {
@@ -141,9 +154,23 @@ void PlayScene::LaneEffect(int keyCode, bool type) {
 
     int id = keyMapping[keyCode];
     auto temp = (Lane*)*next(LaneGroup->GetObjects().begin(), id-1);
-    temp->clicked = type;
+    temp->effectClicked = type;
 }
 
-void PlayScene::UpdateScore(int score) {
-    this->score += score;
+void PlayScene::LaneStatus(int keyCode) {
+    if(keyMapping.find(keyCode) == keyMapping.end()) return;
+
+    int id = keyMapping[keyCode];
+    auto temp = (Lane*)*next(LaneGroup->GetObjects().begin(), id-1);
+    temp->statusClicked = true;
+
+    temp->statusTicks = 20;
+}
+
+void PlayScene::UpdateScore() {
+    /// total score 100000000
+    /// one perfect: 100000000 / totalCount
+    /// one good, one rush: perfect * difficulty / 20
+
+    score = perfectCount * (totalScore / totalCount) + (goodCount + rushCount) * (totalScore / totalCount) * (difficulty / 20.0);
 }
