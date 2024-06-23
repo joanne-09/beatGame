@@ -33,6 +33,15 @@ void MusicSelection::Initialize() {
         //MusicGroup->AddNewObject(btn);
         AddNewControlObject(btn);
     }
+    block1 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 -200, h/2 - 100, 300, 300);
+    block2 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 + 200, h/2 - 100, 300, 300);
+    block3 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 + 600, h/2 - 100, 300, 300);
+    block1->Visible = false;
+    block2->Visible = false;
+    block3->Visible = false;
+    AddNewControlObject(block1);
+    AddNewControlObject(block2);
+    AddNewControlObject(block3);
 
     //init song info
     /*info = [["night", "136", "162"], ["ASMRZ", "130", "149"], ["blingbling", "157", "172"], ["magnetic", "131", "138"],
@@ -63,26 +72,26 @@ void MusicSelection::Draw() const {
     }
     static int i = 0;
     if(preview){
+        block1->Visible = true;
+        block2->Visible = true;
+        block3->Visible = true;
         auto img = new Engine::Label("Preview" + std::to_string(DrawId), "orbitron/medium.ttf", 40, w/2 + 200, h/2 - 325, 255, 255, 255, 255, 0.5, 0.5);
         auto cur_song = songs[DrawId];
         auto name = new Engine::Label(cur_song.name, "orbitron/medium.ttf", 75, w/2 + 300, h/2 - 325, 255, 255, 255, 255, 0.5, 0.5);
         name->Draw();
         //img->Draw();
-        auto block1 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 -200, h/2 - 100, 300, 300);
         auto label1 = new Engine::Label("Easy", "orbitron/medium.ttf", 60, w/2-50, h/2+130 , 0, 255, 0, 255, 0.5, 0.5);
         auto difficulty1 = new Engine::Label(std::to_string(cur_song.difficulty[0]), "orbitron/medium.ttf", 100, w/2-50, h/2+20 , 0, 255, 0, 255, 0.5, 0.5);
         //block1->SetOnClickCallback()
-        auto block2 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 + 200, h/2 - 100, 300, 300);
+        block1->SetOnClickCallback([this] { Engine::GameEngine::GetInstance().ChangeScene("play"); });
         auto label2 = new Engine::Label("Normal", "orbitron/medium.ttf", 60, w/2+350, h/2+130 , 255, 255, 0, 255, 0.5, 0.5);
         auto difficulty2 = new Engine::Label(std::to_string(cur_song.difficulty[1]), "orbitron/medium.ttf", 100, w/2+350, h/2+20 , 255, 255, 0, 255, 0.5, 0.5);
 
-        auto block3 = new Engine::ImageButton("black_square.png", "black_square_selected.png", w/2 + 600, h/2 - 100, 300, 300);
         auto label3 = new Engine::Label("Hard", "orbitron/medium.ttf", 60, w/2+750, h/2+130 , 255, 0, 0, 255, 0.5, 0.5);
         auto difficulty3 = new Engine::Label(std::to_string(cur_song.difficulty[2]), "orbitron/medium.ttf", 100, w/2+750, h/2+20 , 255, 0, 0, 255, 0.5, 0.5);
-
-        block1->Draw();
+        /*block1->Draw();
         block2->Draw();
-        block3->Draw();
+        block3->Draw();*/
         label1->Draw();
         label2->Draw();
         label3->Draw();
