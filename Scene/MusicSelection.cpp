@@ -44,9 +44,6 @@ void MusicSelection::Initialize() {
     AddNewControlObject(block3);
 
     //init song info
-    /*info = [["night", "136", "162"], ["ASMRZ", "130", "149"], ["blingbling", "157", "172"], ["magnetic", "131", "138"],
-        ["night_dancer", "117", "210"], ["racing_night", "130", "261"], ["unforgiven", "104", "189"],
-        ["waiting_for_love", "128", "230"]]*///name, bpm, high_score
     songs.emplace_back(Song("Perfect Night", false, 136, {1, 4, 7}, 0));
     songs.emplace_back(Song("ASMRZ", false, 130, {2, 5, 10}, 0));
     songs.emplace_back(Song("Bling Bang", false, 157, {1, 4, 7}, 0));
@@ -66,8 +63,9 @@ void MusicSelection::Draw() const {
     IScene::Draw();
     for(int i = 0; i < 7; ++i){
         //auto label = new Engine::Label("Music " + std::to_string(i), "orbitron/medium.ttf", 40, w/2 - 750, h/2-325+i*125, 255, 255, 255, 255, 0.5, 0.5);
-        float w_offset = songs[i].name.size() * 9;
-        auto label = new Engine::Label(songs[i].name, "orbitron/medium.ttf", 40, w/2 - 850 + w_offset, h/2-325+i*125, 255, 255, 255, 255, 0.5, 0.5);
+        auto img = new Engine::Image("stage-select/"+songs[i].name+".png", w/2 - 900 + 8, h/2 - 400 + i * 125 + 125/2, 110, 110, 0, 0.5);
+        auto label = new Engine::Label(songs[i].name, "orbitron/medium.ttf", 40, w/2 - 900 + 130, h/2 - 390 + i*125 + 125/2, 255, 255, 255, 255, 0, 0.5);
+        img->Draw();
         label->Draw();
     }
     static int i = 0;
