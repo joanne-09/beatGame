@@ -58,7 +58,6 @@ void PlayScene::Initialize() {
     }
 
     AddNewObject(BeatGroup = new Engine::Group());
-
     // set up music
     songId = AudioHelper::PlayAudio("music/" + songName + ".ogg");
 

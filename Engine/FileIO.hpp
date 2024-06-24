@@ -9,7 +9,7 @@
 #include <utility>
 
 class FileIO{
-protected:
+public:
     std::fstream file;
     std::string filename;
     int preRegScore, preRegTime;

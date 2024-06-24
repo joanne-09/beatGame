@@ -45,13 +45,13 @@ void MusicSelection::Initialize() {
     AddNewControlObject(block3);
 
     //init song info
-    songs.emplace_back(Song("Perfect Night", false, 136, {1, 4, 7}, 0));
+    songs.emplace_back(Song("Perfect Night", false, 136, {1, 5, 7}, 0));
     songs.emplace_back(Song("ASMRZ", false, 130, {2, 5, 10}, 0));
-    songs.emplace_back(Song("Bling Bang", false, 157, {1, 4, 7}, 0));
-    songs.emplace_back(Song("Magnetic", false, 131, {1, 4, 7}, 0));
-    songs.emplace_back(Song("Night Dancer", false, 117, {1, 4, 7}, 0));
+    songs.emplace_back(Song("Bling Bang", false, 157, {3, 4, 9}, 0));
+    songs.emplace_back(Song("Magnetic", false, 131, {2, 4, 7}, 0));
+    songs.emplace_back(Song("Night Dancer", false, 117, {1, 3, 7}, 0));
     songs.emplace_back(Song("Unforgiven", false, 104, {1, 4, 7}, 0));
-    songs.emplace_back(Song("Waiting for Love", false, 128, {1, 4, 7}, 0));
+    songs.emplace_back(Song("Waiting for Love", false, 128, {1, 4, 10}, 0));
 }
 
 void MusicSelection::Update(float deltaTime) {
